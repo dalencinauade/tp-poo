@@ -204,4 +204,66 @@ public class Alquiler {
     public boolean tieneDevolucion() {
         return this.fechaDevolucionReal != null;
     }
+
+    /**
+     * Inicia el alquiler cambiando su estado a VIGENTE y el estado del vehículo a ALQUILADO
+     */
+    public void iniciarAlquiler() {
+        this.estadoAlquiler = EstadoAlquilerEnum.VIGENTE;
+        if (this.vehiculo != null) {
+            this.vehiculo.setEstado(alquilervehiculos.model.enums.EstadoVehiculoEnum.ALQUILADO);
+        }
+    }
+
+    /**
+     * Finaliza el alquiler cambiando su estado a FINALIZADO
+     */
+    public void finalizar() {
+        this.estadoAlquiler = EstadoAlquilerEnum.FINALIZADO;
+        if (this.vehiculo != null) {
+            this.vehiculo.setEstado(alquilervehiculos.model.enums.EstadoVehiculoEnum.DISPONIBLE);
+        }
+    }
+
+    /**
+     * Cancela el alquiler
+     */
+    public void cancelar() {
+        this.estadoAlquiler = EstadoAlquilerEnum.CANCELADO;
+        if (this.vehiculo != null) {
+            this.vehiculo.setEstado(alquilervehiculos.model.enums.EstadoVehiculoEnum.DISPONIBLE);
+        }
+    }
+
+    /**
+     * Verifica si el alquiler está vigente (activo)
+     */
+    public boolean estaActivo() {
+        return this.estadoAlquiler == EstadoAlquilerEnum.VIGENTE;
+    }
+
+    /**
+     * Calcula la duración en días del alquiler
+     */
+    public long calcularDuracionDias() {
+        if (fechaAlquiler == null || fechaDevolucionPrevista == null) {
+            return 0;
+        }
+        long diferencia = fechaDevolucionPrevista.getTime() - fechaAlquiler.getTime();
+        return diferencia / (1000 * 60 * 60 * 24);
+    }
+
+    /**
+     * Calcula los días de retraso en la devolución
+     */
+    public long calcularDiasRetraso() {
+        if (fechaDevolucionReal == null || fechaDevolucionPrevista == null) {
+            return 0;
+        }
+        if (fechaDevolucionReal.after(fechaDevolucionPrevista)) {
+            long diferencia = fechaDevolucionReal.getTime() - fechaDevolucionPrevista.getTime();
+            return diferencia / (1000 * 60 * 60 * 24);
+        }
+        return 0;
+    }
 }

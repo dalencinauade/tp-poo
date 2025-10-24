@@ -76,4 +76,30 @@ public class Empresa {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    // Métodos de negocio
+    
+    /**
+     * Obtiene la información completa de la empresa
+     */
+    public String obtenerInformacionCompleta() {
+        StringBuilder info = new StringBuilder();
+        info.append("=== INFORMACIÓN DE LA EMPRESA ===\n");
+        info.append("Nombre: ").append(nombreEmpresa).append("\n");
+        info.append("CUIT: ").append(cuit).append("\n");
+        info.append("Sitio Web: ").append(sitioWeb).append("\n");
+        info.append("Dirección: ").append(direccion).append("\n");
+        info.append("Ciudad: ").append(ciudad).append("\n");
+        info.append("País: ").append(pais).append("\n");
+        return info.toString();
+    }
+
+    /**
+     * Valida si la empresa tiene todos los datos básicos completos
+     */
+    public boolean tieneInformacionCompleta() {
+        return nombreEmpresa != null && !nombreEmpresa.isEmpty() &&
+               cuit != null && !cuit.isEmpty() &&
+               direccion != null && !direccion.isEmpty();
+    }
 }

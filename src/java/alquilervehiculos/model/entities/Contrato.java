@@ -130,4 +130,45 @@ public class Contrato {
     public void setAlquiler(Alquiler alquiler) {
         this.alquiler = alquiler;
     }
+
+    // Métodos de negocio
+    
+    /**
+     * Finaliza el contrato
+     */
+    public void finalizar() {
+        this.estado = "FINALIZADO";
+    }
+
+    /**
+     * Cancela el contrato
+     */
+    public void cancelar() {
+        this.estado = "CANCELADO";
+    }
+
+    /**
+     * Verifica si el contrato está vigente
+     */
+    public boolean estaVigente() {
+        return "VIGENTE".equals(this.estado);
+    }
+
+    /**
+     * Genera el texto completo del contrato para impresión
+     */
+    public String generarTextoContrato() {
+        StringBuilder texto = new StringBuilder();
+        texto.append("=== CONTRATO DE ALQUILER ===\n");
+        texto.append("ID Contrato: ").append(idContrato).append("\n");
+        texto.append("Fecha Inicio: ").append(fechaInicio).append("\n");
+        texto.append("Fecha Devolución Prevista: ").append(fechaDevolucionPrevista).append("\n");
+        texto.append("Kilometraje Inicial: ").append(kilometrajeInicial).append(" km\n");
+        texto.append("Nivel Combustible Inicial: ").append(nivelCombustibleInicial * 100).append("%\n");
+        texto.append("Costo Estimado: $").append(costoEstimado).append("\n");
+        texto.append("\nTérminos y Condiciones:\n").append(terminosCondiciones).append("\n");
+        texto.append("\nFirma Cliente: ").append(firmaCliente).append("\n");
+        texto.append("Estado: ").append(estado).append("\n");
+        return texto.toString();
+    }
 }

@@ -14,8 +14,8 @@ public class Reserva {
     private Cliente cliente; // Relación N:1 con Cliente
     private Vehiculo vehiculo; // Relación N:1 con Vehiculo
 
-    public Reserva(int idReserva, Date fechaReserva, Date fechaInicio, Date fechaFin, 
-            int diasReserva, double costoEstimado, EstadoReservaEnum estado, 
+    public Reserva(int idReserva, Date fechaReserva, Date fechaInicio, Date fechaFin,
+            int diasReserva, double costoEstimado, EstadoReservaEnum estado,
             Cliente cliente, Vehiculo vehiculo) {
         this.idReserva = idReserva;
         this.fechaReserva = fechaReserva;
@@ -99,5 +99,46 @@ public class Reserva {
 
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
+    }
+
+    // Métodos de negocio
+
+    /**
+     * Confirma la reserva y cambia el estado del vehículo a RESERVADO
+     */
+    public void confirmar() {
+        this.estado = EstadoReservaEnum.CONFIRMADA;
+        // El vehículo seguirá DISPONIBLE hasta que se convierta en alquiler
+    }
+
+    /**
+     * Cancela la reserva y libera el vehículo
+     */
+    public void cancelar() {
+        this.estado = EstadoReservaEnum.CANCELADA;
+        if (this.vehiculo != null) {
+            this.vehiculo.setEstado(alquilervehiculos.model.enums.EstadoVehiculoEnum.DISPONIBLE);
+        }
+    }
+
+    /**
+     * Convierte la reserva en alquiler
+     * 
+     * @return true si se puede convertir, false si no
+     */
+    public boolean convertirAAlquiler() {
+        if (this.estado == EstadoReservaEnum.CONFIRMADA) {
+            this.estado = EstadoReservaEnum.CONVERTIDA_ALQUILER;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Verifica si la reserva está activa (confirmada o pendiente)
+     */
+    public boolean estaActiva() {
+        return this.estado == EstadoReservaEnum.CONFIRMADA ||
+                this.estado == EstadoReservaEnum.PENDIENTE;
     }
 }

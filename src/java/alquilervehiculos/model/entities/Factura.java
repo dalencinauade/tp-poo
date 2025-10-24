@@ -102,4 +102,68 @@ public class Factura {
                 .sum();
         this.total = this.subtotal + this.impuestos;
     }
+
+    /**
+     * Calcula los impuestos basado en el subtotal (21% IVA por defecto)
+     */
+    public void calcularImpuestos() {
+        this.impuestos = this.subtotal * 0.21;
+        this.total = this.subtotal + this.impuestos;
+    }
+
+    /**
+     * Marca la factura como pagada
+     */
+    public void marcarComoPagada() {
+        this.estado = EstadoFacturaEnum.PAGADA;
+    }
+
+    /**
+     * Marca la factura como pendiente
+     */
+    public void marcarComoPendiente() {
+        this.estado = EstadoFacturaEnum.PENDIENTE;
+    }
+
+    /**
+     * Anula la factura
+     */
+    public void anular() {
+        this.estado = EstadoFacturaEnum.ANULADA;
+    }
+
+    /**
+     * Verifica si la factura está pagada
+     */
+    public boolean estaPagada() {
+        return this.estado == EstadoFacturaEnum.PAGADA;
+    }
+
+    /**
+     * Verifica si la factura está pendiente
+     */
+    public boolean estaPendiente() {
+        return this.estado == EstadoFacturaEnum.PENDIENTE;
+    }
+
+    /**
+     * Genera el texto de la factura para impresión
+     */
+    public String generarTextoFactura() {
+        StringBuilder texto = new StringBuilder();
+        texto.append("=== FACTURA ===\n");
+        texto.append("ID: ").append(idFactura).append("\n");
+        texto.append("Fecha Emisión: ").append(fechaEmision).append("\n\n");
+        texto.append("DETALLES:\n");
+        for (DetalleFactura detalle : detalles) {
+            texto.append("- ").append(detalle.getConcepto())
+                 .append(" x").append(detalle.getCantidad())
+                 .append(" = $").append(detalle.getSubtotal()).append("\n");
+        }
+        texto.append("\nSubtotal: $").append(subtotal).append("\n");
+        texto.append("Impuestos (21%): $").append(impuestos).append("\n");
+        texto.append("TOTAL: $").append(total).append("\n");
+        texto.append("\nEstado: ").append(estado).append("\n");
+        return texto.toString();
+    }
 }

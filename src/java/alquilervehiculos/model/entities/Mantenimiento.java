@@ -82,4 +82,65 @@ public class Mantenimiento {
     public void setEstado(EstadoMantenimientoEnum estado) {
         this.estado = estado;
     }
+
+    // Métodos de negocio
+    
+    /**
+     * Inicia el mantenimiento
+     */
+    public void iniciar() {
+        this.estado = EstadoMantenimientoEnum.EN_PROCESO;
+        if (this.fechaInicio == null) {
+            this.fechaInicio = new Date();
+        }
+    }
+
+    /**
+     * Finaliza el mantenimiento
+     */
+    public void finalizar() {
+        this.estado = EstadoMantenimientoEnum.COMPLETADO;
+        if (this.fechaFin == null) {
+            this.fechaFin = new Date();
+        }
+    }
+
+    /**
+     * Cancela el mantenimiento
+     */
+    public void cancelar() {
+        this.estado = EstadoMantenimientoEnum.CANCELADO;
+    }
+
+    /**
+     * Verifica si el mantenimiento está completado
+     */
+    public boolean estaCompletado() {
+        return this.estado == EstadoMantenimientoEnum.COMPLETADO;
+    }
+
+    /**
+     * Verifica si el mantenimiento está en proceso
+     */
+    public boolean estaEnProceso() {
+        return this.estado == EstadoMantenimientoEnum.EN_PROCESO;
+    }
+
+    /**
+     * Verifica si es un mantenimiento preventivo
+     */
+    public boolean esPreventivo() {
+        return this.tipo == TipoMantenimientoEnum.PREVENTIVO;
+    }
+
+    /**
+     * Calcula la duración del mantenimiento en horas
+     */
+    public long calcularDuracionHoras() {
+        if (fechaInicio == null || fechaFin == null) {
+            return 0;
+        }
+        long diferencia = fechaFin.getTime() - fechaInicio.getTime();
+        return diferencia / (1000 * 60 * 60);
+    }
 }

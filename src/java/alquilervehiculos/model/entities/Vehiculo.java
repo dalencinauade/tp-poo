@@ -99,4 +99,55 @@ public abstract class Vehiculo {
     public void setEstado(EstadoVehiculoEnum estado) {
         this.estado = estado;
     }
+
+    // Métodos de negocio
+    
+    /**
+     * Verifica si el vehículo está disponible para alquiler
+     */
+    public boolean estaDisponible() {
+        return this.estado == EstadoVehiculoEnum.DISPONIBLE;
+    }
+
+    /**
+     * Verifica si el vehículo está alquilado
+     */
+    public boolean estaAlquilado() {
+        return this.estado == EstadoVehiculoEnum.ALQUILADO;
+    }
+
+    /**
+     * Verifica si el vehículo está en mantenimiento
+     */
+    public boolean estaEnMantenimiento() {
+        return this.estado == EstadoVehiculoEnum.MANTENIMIENTO;
+    }
+
+    /**
+     * Marca el vehículo como disponible
+     */
+    public void marcarComoDisponible() {
+        this.estado = EstadoVehiculoEnum.DISPONIBLE;
+    }
+
+    /**
+     * Marca el vehículo como alquilado
+     */
+    public void marcarComoAlquilado() {
+        this.estado = EstadoVehiculoEnum.ALQUILADO;
+    }
+
+    /**
+     * Marca el vehículo como en mantenimiento
+     */
+    public void marcarComoEnMantenimiento() {
+        this.estado = EstadoVehiculoEnum.MANTENIMIENTO;
+    }
+
+    /**
+     * Calcula la edad del vehículo en años
+     */
+    public int calcularEdad() {
+        return java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) - this.anio;
+    }
 }

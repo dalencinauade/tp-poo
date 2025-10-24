@@ -54,4 +54,11 @@ public class DetalleFactura {
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
+
+    /**
+     * Calcula el subtotal automáticamente basado en cantidad y precio unitario
+     */
+    public void calcularSubtotal() {
+        this.subtotal = this.cantidad * this.precioUnitario;
+    }
 }

@@ -61,4 +61,37 @@ public class Cliente extends Persona {
     public void setHistorialAlquileres(List<Alquiler> historialAlquileres) {
         this.historialAlquileres = historialAlquileres;
     }
+
+    // Métodos de negocio
+    
+    /**
+     * Verifica si la licencia está vigente
+     */
+    public boolean tieneLicenciaVigente() {
+        if (this.fechaVencimientoLicencia == null) {
+            return false;
+        }
+        return this.fechaVencimientoLicencia.after(new Date());
+    }
+
+    /**
+     * Agrega un alquiler al historial del cliente
+     */
+    public void agregarAlquiler(Alquiler alquiler) {
+        this.historialAlquileres.add(alquiler);
+    }
+
+    /**
+     * Obtiene la cantidad de alquileres realizados
+     */
+    public int getCantidadAlquileres() {
+        return this.historialAlquileres.size();
+    }
+
+    /**
+     * Verifica si es un cliente frecuente (más de 5 alquileres)
+     */
+    public boolean esClienteFrecuente() {
+        return this.historialAlquileres.size() >= 5;
+    }
 }

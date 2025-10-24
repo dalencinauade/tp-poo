@@ -27,4 +27,28 @@ public class Pago {
     public void setMetodoPago(MetodoPagoEnum metodoPago) {
         this.metodoPago = metodoPago;
     }
+
+    // Métodos de negocio
+    
+    /**
+     * Valida si el método de pago es válido
+     */
+    public boolean validarMetodoPago() {
+        return this.metodoPago != null;
+    }
+
+    /**
+     * Verifica si el pago es con efectivo
+     */
+    public boolean esEfectivo() {
+        return this.metodoPago == MetodoPagoEnum.EFECTIVO;
+    }
+
+    /**
+     * Verifica si el pago es con tarjeta
+     */
+    public boolean esConTarjeta() {
+        return this.metodoPago == MetodoPagoEnum.TARJETA_CREDITO || 
+               this.metodoPago == MetodoPagoEnum.TARJETA_DEBITO;
+    }
 }

@@ -81,4 +81,83 @@ public class Usuario {
     public void setEstado(EstadoUsuarioEnum estado) {
         this.estado = estado;
     }
+
+    // Métodos de negocio
+    
+    /**
+     * Verifica si el usuario está activo
+     */
+    public boolean estaActivo() {
+        return this.estado == EstadoUsuarioEnum.ACTIVO;
+    }
+
+    /**
+     * Verifica si el usuario está bloqueado
+     */
+    public boolean estaBloqueado() {
+        return this.estado == EstadoUsuarioEnum.BLOQUEADO;
+    }
+
+    /**
+     * Activa el usuario
+     */
+    public void activar() {
+        this.estado = EstadoUsuarioEnum.ACTIVO;
+    }
+
+    /**
+     * Suspende el usuario
+     */
+    public void suspender() {
+        this.estado = EstadoUsuarioEnum.SUSPENDIDO;
+    }
+
+    /**
+     * Bloquea el usuario
+     */
+    public void bloquear() {
+        this.estado = EstadoUsuarioEnum.BLOQUEADO;
+    }
+
+    /**
+     * Actualiza la fecha de último acceso
+     */
+    public void actualizarUltimoAcceso() {
+        this.ultimoAcceso = new Date();
+    }
+
+    /**
+     * Verifica si es administrador
+     */
+    public boolean esAdmin() {
+        return this.rol == UsuarioRolEnum.ADMIN;
+    }
+
+    /**
+     * Verifica si es gerente
+     */
+    public boolean esGerente() {
+        return this.rol == UsuarioRolEnum.GERENTE;
+    }
+
+    /**
+     * Verifica si es administrativo
+     */
+    public boolean esAdministrativo() {
+        return this.rol == UsuarioRolEnum.ADMINISTRATIVO;
+    }
+
+    /**
+     * Verifica si es técnico
+     */
+    public boolean esTecnico() {
+        return this.rol == UsuarioRolEnum.TECNICO;
+    }
+
+    /**
+     * Verifica si es cliente
+     */
+    public boolean esCliente() {
+        return this.rol == UsuarioRolEnum.CLIENTE;
+    }
 }
