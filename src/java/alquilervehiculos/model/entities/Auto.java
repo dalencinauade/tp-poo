@@ -9,6 +9,20 @@ public class Auto {
         this.capacidadBaul = capacidadBaul;
     }
 
-    // TODO: getters, setters and methods if needed.
+    // Getters y Setters
+    public int getNumeroPuertas() {
+        return numeroPuertas;
+    }
 
+    public void setNumeroPuertas(int numeroPuertas) {
+        this.numeroPuertas = numeroPuertas;
+    }
+
+    public double getCapacidadBaul() {
+        return capacidadBaul;
+    }
+
+    public void setCapacidadBaul(double capacidadBaul) {
+        this.capacidadBaul = capacidadBaul;
+    }
 }

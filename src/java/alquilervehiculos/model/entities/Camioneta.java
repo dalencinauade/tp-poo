@@ -9,5 +9,20 @@ public class Camioneta {
         this.esTodoTerreno = esTodoTerreno;
     }
 
-    // TODO: getters, setters and methods if needed.
+    // Getters y Setters
+    public double getCapacidadCarga() {
+        return capacidadCarga;
+    }
+
+    public void setCapacidadCarga(double capacidadCarga) {
+        this.capacidadCarga = capacidadCarga;
+    }
+
+    public boolean isEsTodoTerreno() {
+        return esTodoTerreno;
+    }
+
+    public void setEsTodoTerreno(boolean esTodoTerreno) {
+        this.esTodoTerreno = esTodoTerreno;
+    }
 }

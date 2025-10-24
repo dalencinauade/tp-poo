@@ -15,5 +15,28 @@ public class Empleado extends Persona {
         this.turno = turno;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public String getLegajo() {
+        return legajo;
+    }
+
+    public void setLegajo(String legajo) {
+        this.legajo = legajo;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public TurnoEmpleadoEnum getTurno() {
+        return turno;
+    }
+
+    public void setTurno(TurnoEmpleadoEnum turno) {
+        this.turno = turno;
+    }
 }

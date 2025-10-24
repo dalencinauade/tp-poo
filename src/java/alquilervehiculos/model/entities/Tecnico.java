@@ -19,5 +19,36 @@ public class Tecnico {
         this.fechaInicioComoTecnico = fechaInicioComoTecnico;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdTecnico() {
+        return idTecnico;
+    }
+
+    public void setIdTecnico(int idTecnico) {
+        this.idTecnico = idTecnico;
+    }
+
+    public EspecialidadTecnicoEnum getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(EspecialidadTecnicoEnum especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public List<String> getCertificaciones() {
+        return certificaciones;
+    }
+
+    public void setCertificaciones(List<String> certificaciones) {
+        this.certificaciones = certificaciones;
+    }
+
+    public Date getFechaInicioComoTecnico() {
+        return fechaInicioComoTecnico;
+    }
+
+    public void setFechaInicioComoTecnico(Date fechaInicioComoTecnico) {
+        this.fechaInicioComoTecnico = fechaInicioComoTecnico;
+    }
 }

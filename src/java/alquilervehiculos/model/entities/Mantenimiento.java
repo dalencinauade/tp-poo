@@ -26,5 +26,60 @@ public class Mantenimiento {
         this.estado = estado;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdMantenimiento() {
+        return idMantenimiento;
+    }
+
+    public void setIdMantenimiento(int idMantenimiento) {
+        this.idMantenimiento = idMantenimiento;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public TipoMantenimientoEnum getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoMantenimientoEnum tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
+
+    public EstadoMantenimientoEnum getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoMantenimientoEnum estado) {
+        this.estado = estado;
+    }
 }

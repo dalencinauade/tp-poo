@@ -22,5 +22,52 @@ public class Alquiler {
         this.estadoAlquiler = estadoAlquiler;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdAlquiler() {
+        return idAlquiler;
+    }
+
+    public void setIdAlquiler(int idAlquiler) {
+        this.idAlquiler = idAlquiler;
+    }
+
+    public Date getFechaAlquiler() {
+        return fechaAlquiler;
+    }
+
+    public void setFechaAlquiler(Date fechaAlquiler) {
+        this.fechaAlquiler = fechaAlquiler;
+    }
+
+    public Date getFechaDevolucionPrevista() {
+        return fechaDevolucionPrevista;
+    }
+
+    public void setFechaDevolucionPrevista(Date fechaDevolucionPrevista) {
+        this.fechaDevolucionPrevista = fechaDevolucionPrevista;
+    }
+
+    public int getKilometrajeInicial() {
+        return kilometrajeInicial;
+    }
+
+    public void setKilometrajeInicial(int kilometrajeInicial) {
+        this.kilometrajeInicial = kilometrajeInicial;
+    }
+
+    public double getNivelCombustibleInicial() {
+        return nivelCombustibleInicial;
+    }
+
+    public void setNivelCombustibleInicial(double nivelCombustibleInicial) {
+        this.nivelCombustibleInicial = nivelCombustibleInicial;
+    }
+
+    public EstadoAlquilerEnum getEstadoAlquiler() {
+        return estadoAlquiler;
+    }
+
+    public void setEstadoAlquiler(EstadoAlquilerEnum estadoAlquiler) {
+        this.estadoAlquiler = estadoAlquiler;
+    }
 }

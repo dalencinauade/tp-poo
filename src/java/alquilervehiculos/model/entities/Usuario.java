@@ -25,5 +25,60 @@ public class Usuario {
         this.estado = estado;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RolUsuarioEnum getRol() {
+        return rol;
+    }
+
+    public void setRol(RolUsuarioEnum rol) {
+        this.rol = rol;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getUltimoAcceso() {
+        return ultimoAcceso;
+    }
+
+    public void setUltimoAcceso(Date ultimoAcceso) {
+        this.ultimoAcceso = ultimoAcceso;
+    }
+
+    public EstadoUsuarioEnum getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoUsuarioEnum estado) {
+        this.estado = estado;
+    }
 }

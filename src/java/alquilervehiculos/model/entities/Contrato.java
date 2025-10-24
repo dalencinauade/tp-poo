@@ -24,5 +24,68 @@ public class Contrato {
         this.firmaCliente = firmaCliente;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdContrato() {
+        return idContrato;
+    }
+
+    public void setIdContrato(int idContrato) {
+        this.idContrato = idContrato;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public Date getFechaDevolucionReal() {
+        return fechaDevolucionReal;
+    }
+
+    public void setFechaDevolucionReal(Date fechaDevolucionReal) {
+        this.fechaDevolucionReal = fechaDevolucionReal;
+    }
+
+    public double getCostoEstimado() {
+        return costoEstimado;
+    }
+
+    public void setCostoEstimado(double costoEstimado) {
+        this.costoEstimado = costoEstimado;
+    }
+
+    public double getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(double costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+
+    public String getTerminosCondiciones() {
+        return terminosCondiciones;
+    }
+
+    public void setTerminosCondiciones(String terminosCondiciones) {
+        this.terminosCondiciones = terminosCondiciones;
+    }
+
+    public String getFirmaCliente() {
+        return firmaCliente;
+    }
+
+    public void setFirmaCliente(String firmaCliente) {
+        this.firmaCliente = firmaCliente;
+    }
 }

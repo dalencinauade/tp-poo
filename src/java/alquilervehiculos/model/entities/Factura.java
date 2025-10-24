@@ -17,5 +17,44 @@ public class Factura {
         this.estado = estado;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdFactura() {
+        return idFactura;
+    }
+
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public double getImpuestos() {
+        return impuestos;
+    }
+
+    public void setImpuestos(double impuestos) {
+        this.impuestos = impuestos;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public EstadoFacturaEnum getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoFacturaEnum estado) {
+        this.estado = estado;
+    }
 }

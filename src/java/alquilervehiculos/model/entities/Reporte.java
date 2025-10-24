@@ -19,5 +19,44 @@ public class Reporte {
         this.fechaFin = fechaFin;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdReporte() {
+        return idReporte;
+    }
+
+    public void setIdReporte(int idReporte) {
+        this.idReporte = idReporte;
+    }
+
+    public TipoReporteEnum getTipoReporte() {
+        return tipoReporte;
+    }
+
+    public void setTipoReporte(TipoReporteEnum tipoReporte) {
+        this.tipoReporte = tipoReporte;
+    }
+
+    public Date getFechaGeneracion() {
+        return fechaGeneracion;
+    }
+
+    public void setFechaGeneracion(Date fechaGeneracion) {
+        this.fechaGeneracion = fechaGeneracion;
+    }
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
 }

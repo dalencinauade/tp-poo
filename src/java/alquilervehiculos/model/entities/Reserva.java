@@ -15,5 +15,36 @@ public class Reserva {
         this.costoEstimado = costoEstimado;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
+
+    public Date getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(Date fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }
+
+    public int getDiasReserva() {
+        return diasReserva;
+    }
+
+    public void setDiasReserva(int diasReserva) {
+        this.diasReserva = diasReserva;
+    }
+
+    public double getCostoEstimado() {
+        return costoEstimado;
+    }
+
+    public void setCostoEstimado(double costoEstimado) {
+        this.costoEstimado = costoEstimado;
+    }
 }

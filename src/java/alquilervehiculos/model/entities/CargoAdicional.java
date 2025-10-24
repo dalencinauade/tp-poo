@@ -15,5 +15,36 @@ public class CargoAdicional {
         this.monto = monto;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdCargo() {
+        return idCargo;
+    }
+
+    public void setIdCargo(int idCargo) {
+        this.idCargo = idCargo;
+    }
+
+    public TipoCargoEnum getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoCargoEnum tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
 }

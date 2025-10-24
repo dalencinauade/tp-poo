@@ -15,5 +15,36 @@ public class Gerente {
         this.metaVentasMensual = metaVentasMensual;
     }
 
-    // TODO: getters, setters and methods needed.
+    // Getters y Setters
+    public int getIdGerente() {
+        return idGerente;
+    }
+
+    public void setIdGerente(int idGerente) {
+        this.idGerente = idGerente;
+    }
+
+    public double getBonoRendimiento() {
+        return bonoRendimiento;
+    }
+
+    public void setBonoRendimiento(double bonoRendimiento) {
+        this.bonoRendimiento = bonoRendimiento;
+    }
+
+    public Date getFechaInicioComoGerente() {
+        return fechaInicioComoGerente;
+    }
+
+    public void setFechaInicioComoGerente(Date fechaInicioComoGerente) {
+        this.fechaInicioComoGerente = fechaInicioComoGerente;
+    }
+
+    public double getMetaVentasMensual() {
+        return metaVentasMensual;
+    }
+
+    public void setMetaVentasMensual(double metaVentasMensual) {
+        this.metaVentasMensual = metaVentasMensual;
+    }
 }
