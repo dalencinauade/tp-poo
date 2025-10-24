@@ -1,5 +1,8 @@
 package alquilervehiculos.model.enums;
 
-public class MetodoPagoEnum {
-    
+public enum MetodoPagoEnum {
+    EFECTIVO,
+    TARJETA_CREDITO,
+    TARJETA_DEBITO,
+    TRANSFERENCIA;
 }

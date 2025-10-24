@@ -1,5 +1,8 @@
 package alquilervehiculos.model.enums;
 
-public class RolUsuarioEnum {
-    
+public enum RolUsuarioEnum {
+    CLIENTE,
+    GERENTE,
+    ADMINISTRATIVO,
+    TECNICO;
 }

@@ -1,5 +1,10 @@
 package alquilervehiculos.model.enums;
 
-public class CategoriaVehiculoEnum {
-    
+public enum CategoriaVehiculoEnum {
+    COMPACTO,
+    SEDAN,
+    SUV,
+    PICKUP,
+    LUJO,
+    DEPORTIVO;
 }

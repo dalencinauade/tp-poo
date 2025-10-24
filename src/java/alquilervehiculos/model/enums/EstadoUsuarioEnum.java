@@ -1,5 +1,8 @@
 package alquilervehiculos.model.enums;
 
-public class EstadoUsuarioEnum {
-    
+public enum EstadoUsuarioEnum {
+    ACTIVO,
+    INACTIVO,
+    BLOQUEADO,
+    SUSPENDIDO;
 }

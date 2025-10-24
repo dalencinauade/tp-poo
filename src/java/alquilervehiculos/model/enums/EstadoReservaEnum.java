@@ -1,5 +1,8 @@
 package alquilervehiculos.model.enums;
 
-public class EstadoReservaEnum {
-    
+public enum EstadoReservaEnum {
+    PENDIENTE,
+    CONFIRMADA,
+    CANCELADA,
+    CONVERTIDA_ALQUILER;
 }

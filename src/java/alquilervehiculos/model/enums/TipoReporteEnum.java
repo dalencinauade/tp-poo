@@ -1,5 +1,9 @@
 package alquilervehiculos.model.enums;
 
-public class TipoReporteEnum {
-    
+public enum TipoReporteEnum {
+    DISPONIBILIDAD_VEHICULOS,
+    CONTRATOS_ACTIVOS,
+    INGRESOS_ALQUILER,
+    MANTENIMIENTOS,
+    CLIENTES_FRECUENTES
 }

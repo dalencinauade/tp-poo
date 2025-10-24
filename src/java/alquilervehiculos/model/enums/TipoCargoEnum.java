@@ -1,5 +1,9 @@
 package alquilervehiculos.model.enums;
 
-public class TipoCargoEnum {
-    
+public enum TipoCargoEnum {
+    DEVOLUCION_TARDIA,
+    KILOMETRAJE_EXTRA,
+    DANO_VEHICULO,
+    COMBUSTIBLE,
+    LIMPIEZA;
 }

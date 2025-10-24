@@ -1,5 +1,8 @@
 package alquilervehiculos.model.enums;
 
-public class TipoMantenimientoEnum {
-    
+public enum TipoMantenimientoEnum {
+    PREVENTIVO,
+    CORRECTIVO,
+    REVISION,
+    REPARACION;
 }

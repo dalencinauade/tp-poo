@@ -1,5 +1,8 @@
 package alquilervehiculos.model.enums;
 
-public class EstadoFacturaEnum {
-    
+public enum EstadoFacturaEnum {
+    PENDIENTE,
+    PAGADA,
+    ANULADA,
+    VENCIDA;
 }

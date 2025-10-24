@@ -1,5 +1,8 @@
 package alquilervehiculos.model.enums;
 
-public class EstadoVehiculoEnum {
-    
+public enum EstadoVehiculoEnum {
+    DISPONIBLE,
+    ALQUILADO,
+    MANTENIMIENTO,
+    FUERA_DE_SERVICIO;
 }

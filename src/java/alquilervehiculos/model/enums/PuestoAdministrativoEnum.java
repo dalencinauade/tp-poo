@@ -1,5 +1,7 @@
 package alquilervehiculos.model.enums;
 
-public class PuestoAdministrativoEnum {
-    
+public enum PuestoAdministrativoEnum {
+    RECEPCION,
+    VENTAS,
+    CAJA;
 }

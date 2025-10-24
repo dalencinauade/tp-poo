@@ -1,5 +1,7 @@
 package alquilervehiculos.model.enums;
 
-public class TurnoEmpleadoEnum {
-    
+public enum TurnoEmpleadoEnum {
+    MAÑANA,
+    TARDE,
+    NOCHE;
 }

@@ -1,5 +1,7 @@
 package alquilervehiculos.model.enums;
 
-public class EspecialidadTecnicoEnum {
-    
+public enum EspecialidadTecnicoEnum {
+    MECANICA,
+    ELECTRICA,
+    CHAPA_PINTURA;
 }
