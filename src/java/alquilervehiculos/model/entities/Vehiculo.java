@@ -1,24 +1,41 @@
 package alquilervehiculos.model.entities;
 
-public class Vehiculo {
+import alquilervehiculos.model.enums.CategoriaVehiculoEnum;
+import alquilervehiculos.model.enums.EstadoVehiculoEnum;
+
+public abstract class Vehiculo {
+    private int idVehiculo;
     private String patente;
     private String marca;
     private String modelo;
     private int anio;
     private double precioDiario;
     private double capacidadTanque;
+    private CategoriaVehiculoEnum categoria;
+    private EstadoVehiculoEnum estado;
 
-    public Vehiculo(String patente, String marca, String modelo, int anio, double precioDiario,
-            double capacidadTanque) {
+    public Vehiculo(int idVehiculo, String patente, String marca, String modelo, int anio,
+            double precioDiario, double capacidadTanque, CategoriaVehiculoEnum categoria, EstadoVehiculoEnum estado) {
+        this.idVehiculo = idVehiculo;
         this.patente = patente;
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
         this.precioDiario = precioDiario;
         this.capacidadTanque = capacidadTanque;
+        this.categoria = categoria;
+        this.estado = estado;
     }
 
     // Getters y Setters
+    public int getIdVehiculo() {
+        return idVehiculo;
+    }
+
+    public void setIdVehiculo(int idVehiculo) {
+        this.idVehiculo = idVehiculo;
+    }
+
     public String getPatente() {
         return patente;
     }
@@ -65,5 +82,21 @@ public class Vehiculo {
 
     public void setCapacidadTanque(double capacidadTanque) {
         this.capacidadTanque = capacidadTanque;
+    }
+
+    public CategoriaVehiculoEnum getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaVehiculoEnum categoria) {
+        this.categoria = categoria;
+    }
+
+    public EstadoVehiculoEnum getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoVehiculoEnum estado) {
+        this.estado = estado;
     }
 }

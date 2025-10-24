@@ -1,18 +1,19 @@
 package alquilervehiculos.model.entities;
 
+import alquilervehiculos.model.enums.EspecialidadTecnicoEnum;
 import java.util.Date;
 import java.util.List;
 
-import alquilervehiculos.model.enums.EspecialidadTecnicoEnum;
-
-public class Tecnico {
+public class Tecnico extends Empleado {
     private int idTecnico;
     private EspecialidadTecnicoEnum especialidad;
     private List<String> certificaciones;
     private Date fechaInicioComoTecnico;
 
-    public Tecnico(int idTecnico, EspecialidadTecnicoEnum especialidad, List<String> certificaciones,
+    public Tecnico(int dni, String nombre, String apellido, String email,
+            String legajo, int idTecnico, EspecialidadTecnicoEnum especialidad, List<String> certificaciones,
             Date fechaInicioComoTecnico) {
+        super(dni, nombre, apellido, email, legajo);
         this.idTecnico = idTecnico;
         this.especialidad = especialidad;
         this.certificaciones = certificaciones;

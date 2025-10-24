@@ -2,14 +2,17 @@ package alquilervehiculos.model.entities;
 
 import java.util.Date;
 
-public class Gerente {
+public class Gerente extends Empleado {
     private int idGerente;
     private double bonoRendimiento;
     private Date fechaInicioComoGerente;
     private double metaVentasMensual;
 
-    public Gerente(int id, double bonoRendimiento, Date fechaInicioComoGerente, double metaVentasMensual) {
-        this.idGerente = id;
+    public Gerente(int dni, String nombre, String apellido, String email,
+            String legajo, int idGerente, double bonoRendimiento, Date fechaInicioComoGerente,
+            double metaVentasMensual) {
+        super(dni, nombre, apellido, email, legajo);
+        this.idGerente = idGerente;
         this.bonoRendimiento = bonoRendimiento;
         this.fechaInicioComoGerente = fechaInicioComoGerente;
         this.metaVentasMensual = metaVentasMensual;

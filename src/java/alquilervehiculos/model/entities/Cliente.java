@@ -11,9 +11,9 @@ public class Cliente extends Persona {
     private String tipoLicencia;
     private List<Alquiler> historialAlquileres;
 
-    public Cliente(int dni, String telefono, String direccion, int idCliente, String numeroLicencia,
-            Date fechaVencimientoLicencia, String tipoLicencia) {
-        super(dni, telefono, direccion);
+    public Cliente(int dni, String nombre, String apellido, String email,
+            int idCliente, String numeroLicencia, Date fechaVencimientoLicencia, String tipoLicencia) {
+        super(dni, nombre, apellido, email);
         this.idCliente = idCliente;
         this.numeroLicencia = numeroLicencia;
         this.fechaVencimientoLicencia = fechaVencimientoLicencia;

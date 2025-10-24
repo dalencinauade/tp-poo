@@ -3,18 +3,18 @@ package alquilervehiculos.model.entities;
 import java.util.Date;
 
 import alquilervehiculos.model.enums.EstadoUsuarioEnum;
-import alquilervehiculos.model.enums.RolUsuarioEnum;
+import alquilervehiculos.model.enums.UsuarioRolEnum;
 
 public class Usuario {
     private int idUsuario;
     private String username;
     private String password;
-    private RolUsuarioEnum rol;
+    private UsuarioRolEnum rol;
     private Date fechaCreacion;
     private Date ultimoAcceso;
     private EstadoUsuarioEnum estado;
 
-    public Usuario(int idUsuario, String username, String password, RolUsuarioEnum rol, Date fechaCreacion,
+    public Usuario(int idUsuario, String username, String password, UsuarioRolEnum rol, Date fechaCreacion,
             Date ultimoAcceso, EstadoUsuarioEnum estado) {
         this.idUsuario = idUsuario;
         this.username = username;
@@ -50,11 +50,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public RolUsuarioEnum getRol() {
+    public UsuarioRolEnum getRol() {
         return rol;
     }
 
-    public void setRol(RolUsuarioEnum rol) {
+    public void setRol(UsuarioRolEnum rol) {
         this.rol = rol;
     }
 

@@ -1,12 +1,19 @@
 package alquilervehiculos.model.entities;
 
-public class Moto {
+import alquilervehiculos.model.enums.CategoriaVehiculoEnum;
+import alquilervehiculos.model.enums.EstadoVehiculoEnum;
+
+public class Moto extends Vehiculo {
     private int idMoto;
     private int cantidadPasajeros;
     private boolean tieneSidecar;
     private int cilindrada;
 
-    public Moto(int idMoto, int cantidadPasajeros, boolean tieneSidecar, int cilindrada) {
+    public Moto(int idVehiculo, String patente, String marca, String modelo, int anio,
+            double precioDiario, double capacidadTanque, CategoriaVehiculoEnum categoria, EstadoVehiculoEnum estado,
+            int idMoto, int cantidadPasajeros, boolean tieneSidecar, int cilindrada) {
+        super(idVehiculo, patente, marca, modelo, anio, precioDiario,
+                capacidadTanque, categoria, estado);
         this.idMoto = idMoto;
         this.cantidadPasajeros = cantidadPasajeros;
         this.tieneSidecar = tieneSidecar;

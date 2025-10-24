@@ -2,19 +2,21 @@ package alquilervehiculos.model.entities;
 
 import alquilervehiculos.model.enums.PuestoAdministrativoEnum;
 
-public class Administrativo {
+public class Administrativo extends Empleado {
     private int idAdministrativo;
     private PuestoAdministrativoEnum puesto;
     private int metaAlquileresMensual;
     private int cantidadClientesAtendidos;
     private int cantidadIdiomas;
 
-    public Administrativo(int id, PuestoAdministrativoEnum puesto, int metaAlquileresMensual, int cantClientesAtendidos,
+    public Administrativo(int dni, String nombre, String apellido, String email,
+            String legajo, int idAdministrativo, PuestoAdministrativoEnum puesto, int metaAlquileresMensual,
             int cantIdiomas) {
-        this.idAdministrativo = id;
+        super(dni, nombre, apellido, email, legajo);
+        this.idAdministrativo = idAdministrativo;
         this.puesto = puesto;
         this.metaAlquileresMensual = metaAlquileresMensual;
-        this.cantidadClientesAtendidos = cantClientesAtendidos;
+        this.cantidadClientesAtendidos = 0;
         this.cantidadIdiomas = cantIdiomas;
     }
 
