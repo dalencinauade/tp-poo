@@ -12,11 +12,8 @@ public abstract class Persona {
     private Date fechaNacimiento;
     private Usuario usuario; // Relación 1:1 con Usuario
 
-    public Persona(int dni, String nombre, String apellido, String email) {
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Persona(int dni) {
         this.dni = dni;
-        this.email = email;
     }
 
     // Getters y Setters

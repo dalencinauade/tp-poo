@@ -210,3 +210,16 @@ Para completar la implementación según el documento de referencia, se recomien
 3. Agregar constraints y foreign keys necesarias
 
 ---
+
+
+---
+
+semana que viene:
+
+  - codigo 60% "funcionando" con ventanitas de swing bla bla bla..
+  - uml terminado
+  - clases en código
+
+a partir de la semana que viene:
+-> 31/10 a la semana siguiente podemos entregar si queremos.
+-> 07/11 o 14/11 (y los que todavia no presentaron.. 21/11) sino.. directamente la otra (posiblemente fecha de parcial)

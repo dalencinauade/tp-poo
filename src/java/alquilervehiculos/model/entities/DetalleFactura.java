@@ -7,11 +7,8 @@ public class DetalleFactura {
     private double precioUnitario;
     private double subtotal;
 
-    public DetalleFactura(int idDetalle, String concepto, int cantidad, double precioUnitario) {
+    public DetalleFactura(int idDetalle) {
         this.idDetalle = idDetalle;
-        this.concepto = concepto;
-        this.cantidad = cantidad;
-        this.precioUnitario = precioUnitario;
     }
 
     // Getters y Setters

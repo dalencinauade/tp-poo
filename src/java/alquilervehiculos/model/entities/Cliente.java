@@ -10,10 +10,10 @@ public class Cliente extends Persona {
     private Date fechaVencimientoLicencia;
     private String tipoLicencia;
     private List<Alquiler> historialAlquileres;
+    private int limiteClienteFrecuente = 5;
 
-    public Cliente(int dni, String nombre, String apellido, String email,
-            int idCliente, String numeroLicencia, Date fechaVencimientoLicencia, String tipoLicencia) {
-        super(dni, nombre, apellido, email);
+    public Cliente(int dni, int idCliente, String numeroLicencia, Date fechaVencimientoLicencia, String tipoLicencia) {
+        super(dni);
         this.idCliente = idCliente;
         this.numeroLicencia = numeroLicencia;
         this.fechaVencimientoLicencia = fechaVencimientoLicencia;
@@ -63,7 +63,7 @@ public class Cliente extends Persona {
     }
 
     // Métodos de negocio
-    
+
     /**
      * Verifica si la licencia está vigente
      */
@@ -92,6 +92,6 @@ public class Cliente extends Persona {
      * Verifica si es un cliente frecuente (más de 5 alquileres)
      */
     public boolean esClienteFrecuente() {
-        return this.historialAlquileres.size() >= 5;
+        return this.historialAlquileres.size() >= this.limiteClienteFrecuente;
     }
 }

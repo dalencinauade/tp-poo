@@ -8,14 +8,12 @@ public class Gerente extends Empleado {
     private Date fechaInicioComoGerente;
     private double metaVentasMensual;
 
-    public Gerente(int dni, String nombre, String apellido, String email,
-            String legajo, int idGerente, double bonoRendimiento, Date fechaInicioComoGerente,
-            double metaVentasMensual) {
-        super(dni, nombre, apellido, email, legajo);
+    public Gerente(int dni, int legajo, int idGerente) {
+        super(dni, legajo);
         this.idGerente = idGerente;
-        this.bonoRendimiento = bonoRendimiento;
-        this.fechaInicioComoGerente = fechaInicioComoGerente;
-        this.metaVentasMensual = metaVentasMensual;
+        this.bonoRendimiento = 0;
+        this.fechaInicioComoGerente = new Date();
+        this.metaVentasMensual = 0;
     }
 
     // Getters y Setters

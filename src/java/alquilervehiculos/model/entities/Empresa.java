@@ -1,7 +1,7 @@
 package alquilervehiculos.model.entities;
 
 public class Empresa {
-    private int idReporte;
+    private int idEmpresa;
     private String nombreEmpresa;
     private String cuit;
     private String sitioWeb;
@@ -9,24 +9,19 @@ public class Empresa {
     private String ciudad;
     private String pais;
 
-    public Empresa(int idReporte, String nombreEmpresa, String cuit, String sitioWeb, String direccion, String ciudad,
-            String pais) {
-        this.idReporte = idReporte;
+    public Empresa(int idEmpresa, String nombreEmpresa, String cuit) {
+        this.idEmpresa = idEmpresa;
         this.nombreEmpresa = nombreEmpresa;
         this.cuit = cuit;
-        this.sitioWeb = sitioWeb;
-        this.direccion = direccion;
-        this.ciudad = ciudad;
-        this.pais = pais;
     }
 
     // Getters y Setters
-    public int getIdReporte() {
-        return idReporte;
+    public int getIdEmpresa() {
+        return idEmpresa;
     }
 
-    public void setIdReporte(int idReporte) {
-        this.idReporte = idReporte;
+    public void setIdEmpresa(int idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     public String getNombreEmpresa() {
@@ -78,7 +73,7 @@ public class Empresa {
     }
 
     // Métodos de negocio
-    
+
     /**
      * Obtiene la información completa de la empresa
      */
@@ -99,7 +94,7 @@ public class Empresa {
      */
     public boolean tieneInformacionCompleta() {
         return nombreEmpresa != null && !nombreEmpresa.isEmpty() &&
-               cuit != null && !cuit.isEmpty() &&
-               direccion != null && !direccion.isEmpty();
+                cuit != null && !cuit.isEmpty() &&
+                direccion != null && !direccion.isEmpty();
     }
 }

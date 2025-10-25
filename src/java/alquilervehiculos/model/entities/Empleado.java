@@ -3,21 +3,21 @@ package alquilervehiculos.model.entities;
 import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
 
 public abstract class Empleado extends Persona {
-    private String legajo;
+    private int legajo;
     private double salario;
     private TurnoEmpleadoEnum turno;
 
-    public Empleado(int dni, String nombre, String apellido, String email, String legajo) {
-        super(dni, nombre, apellido, email);
+    public Empleado(int dni, int legajo) {
+        super(dni);
         this.legajo = legajo;
     }
 
     // Getters y Setters
-    public String getLegajo() {
+    public int getLegajo() {
         return legajo;
     }
 
-    public void setLegajo(String legajo) {
+    public void setLegajo(int legajo) {
         this.legajo = legajo;
     }
 

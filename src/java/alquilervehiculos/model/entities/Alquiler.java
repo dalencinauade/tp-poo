@@ -218,7 +218,7 @@ public class Alquiler {
     /**
      * Finaliza el alquiler cambiando su estado a FINALIZADO
      */
-    public void finalizar() {
+    public void finalizarAlquiler() {
         this.estadoAlquiler = EstadoAlquilerEnum.FINALIZADO;
         if (this.vehiculo != null) {
             this.vehiculo.setEstado(alquilervehiculos.model.enums.EstadoVehiculoEnum.DISPONIBLE);
@@ -228,7 +228,7 @@ public class Alquiler {
     /**
      * Cancela el alquiler
      */
-    public void cancelar() {
+    public void cancelarAlquiler() {
         this.estadoAlquiler = EstadoAlquilerEnum.CANCELADO;
         if (this.vehiculo != null) {
             this.vehiculo.setEstado(alquilervehiculos.model.enums.EstadoVehiculoEnum.DISPONIBLE);

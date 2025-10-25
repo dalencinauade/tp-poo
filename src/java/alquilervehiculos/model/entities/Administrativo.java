@@ -9,15 +9,12 @@ public class Administrativo extends Empleado {
     private int cantidadClientesAtendidos;
     private int cantidadIdiomas;
 
-    public Administrativo(int dni, String nombre, String apellido, String email,
-            String legajo, int idAdministrativo, PuestoAdministrativoEnum puesto, int metaAlquileresMensual,
-            int cantIdiomas) {
-        super(dni, nombre, apellido, email, legajo);
+    public Administrativo(int dni, int legajo, int idAdministrativo) {
+        super(dni, legajo);
         this.idAdministrativo = idAdministrativo;
-        this.puesto = puesto;
-        this.metaAlquileresMensual = metaAlquileresMensual;
+        this.metaAlquileresMensual = 0;
         this.cantidadClientesAtendidos = 0;
-        this.cantidadIdiomas = cantIdiomas;
+        this.cantidadIdiomas = 0;
     }
 
     // Getters y Setters
