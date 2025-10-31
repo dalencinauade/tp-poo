@@ -11,8 +11,7 @@ public class Reporte {
     private Date fechaInicio;
     private Date fechaFin;
 
-    public Reporte(int idReporte, TipoReporteEnum tipoReporte, Date fechaGeneracion, Date fechaInicio, Date fechaFin) {
-        this.idReporte = idReporte;
+    public Reporte(TipoReporteEnum tipoReporte, Date fechaGeneracion, Date fechaInicio, Date fechaFin) {
         this.tipoReporte = tipoReporte;
         this.fechaGeneracion = fechaGeneracion;
         this.fechaInicio = fechaInicio;
@@ -22,10 +21,6 @@ public class Reporte {
     // Getters y Setters
     public int getIdReporte() {
         return idReporte;
-    }
-
-    public void setIdReporte(int idReporte) {
-        this.idReporte = idReporte;
     }
 
     public TipoReporteEnum getTipoReporte() {

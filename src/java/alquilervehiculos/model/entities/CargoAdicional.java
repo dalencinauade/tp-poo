@@ -8,8 +8,7 @@ public class CargoAdicional {
     private String descripcion;
     private double monto;
 
-    public CargoAdicional(int idCargo, TipoCargoEnum tipo, String descripcion, double monto) {
-        this.idCargo = idCargo;
+    public CargoAdicional(TipoCargoEnum tipo, String descripcion, double monto) {
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.monto = monto;
@@ -67,15 +66,15 @@ public class CargoAdicional {
     /**
      * Verifica si es un cargo por daño al vehículo
      */
-    public boolean esDanoVehiculo() {
-        return this.tipo == TipoCargoEnum.DANO_VEHICULO;
+    public boolean esDanioVehiculo() {
+        return this.tipo == TipoCargoEnum.DANIO_VEHICULO;
     }
 
     /**
      * Verifica si es un cargo por combustible
      */
-    public boolean esCombustible() {
-        return this.tipo == TipoCargoEnum.COMBUSTIBLE;
+    public boolean esFaltaCombustible() {
+        return this.tipo == TipoCargoEnum.FALTA_COMBUSTIBLE;
     }
 
     /**

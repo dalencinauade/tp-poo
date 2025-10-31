@@ -3,35 +3,29 @@ package alquilervehiculos.model.entities;
 import java.util.Date;
 
 import alquilervehiculos.model.enums.EstadoUsuarioEnum;
-import alquilervehiculos.model.enums.UsuarioRolEnum;
+import alquilervehiculos.model.enums.RolUsuarioEnum;
 
 public class Usuario {
     private int idUsuario;
     private String username;
     private String password;
-    private UsuarioRolEnum rol;
+    private RolUsuarioEnum rol;
     private Date fechaCreacion;
     private Date ultimoAcceso;
     private EstadoUsuarioEnum estado;
 
-    public Usuario(int idUsuario, String username, String password, UsuarioRolEnum rol, Date fechaCreacion,
-            Date ultimoAcceso, EstadoUsuarioEnum estado) {
-        this.idUsuario = idUsuario;
-        this.username = username;
-        this.password = password;
-        this.rol = rol;
-        this.fechaCreacion = fechaCreacion;
-        this.ultimoAcceso = ultimoAcceso;
-        this.estado = estado;
+    public Usuario(String username, String password, RolUsuarioEnum rol) {
+        this.fechaCreacion = new Date();
+        this.ultimoAcceso = null;
+        this.estado = EstadoUsuarioEnum.ACTIVO;
+
+        // Llamar a servicio para guardar en DB
+        // Asignar idUsuario con el id insertado en DB
     }
 
     // Getters y Setters
     public int getIdUsuario() {
         return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public String getUsername() {
@@ -50,11 +44,11 @@ public class Usuario {
         this.password = password;
     }
 
-    public UsuarioRolEnum getRol() {
+    public RolUsuarioEnum getRol() {
         return rol;
     }
 
-    public void setRol(UsuarioRolEnum rol) {
+    public void setRol(RolUsuarioEnum rol) {
         this.rol = rol;
     }
 
@@ -130,34 +124,34 @@ public class Usuario {
      * Verifica si es administrador
      */
     public boolean esAdmin() {
-        return this.rol == UsuarioRolEnum.ADMIN;
+        return this.rol == RolUsuarioEnum.ADMIN;
     }
 
     /**
      * Verifica si es gerente
      */
     public boolean esGerente() {
-        return this.rol == UsuarioRolEnum.GERENTE;
+        return this.rol == RolUsuarioEnum.GERENTE;
     }
 
     /**
      * Verifica si es administrativo
      */
     public boolean esAdministrativo() {
-        return this.rol == UsuarioRolEnum.ADMINISTRATIVO;
+        return this.rol == RolUsuarioEnum.ADMINISTRATIVO;
     }
 
     /**
      * Verifica si es técnico
      */
     public boolean esTecnico() {
-        return this.rol == UsuarioRolEnum.TECNICO;
+        return this.rol == RolUsuarioEnum.TECNICO;
     }
 
     /**
      * Verifica si es cliente
      */
     public boolean esCliente() {
-        return this.rol == UsuarioRolEnum.CLIENTE;
+        return this.rol == RolUsuarioEnum.CLIENTE;
     }
 }

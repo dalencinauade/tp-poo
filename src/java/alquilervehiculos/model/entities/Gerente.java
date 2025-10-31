@@ -2,27 +2,26 @@ package alquilervehiculos.model.entities;
 
 import java.util.Date;
 
+import alquilervehiculos.model.enums.RolUsuarioEnum;
+import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
+
 public class Gerente extends Empleado {
     private int idGerente;
     private double bonoRendimiento;
     private Date fechaInicioComoGerente;
     private double metaVentasMensual;
 
-    public Gerente(int dni, int legajo, int idGerente) {
-        super(dni, legajo);
-        this.idGerente = idGerente;
-        this.bonoRendimiento = 0;
-        this.fechaInicioComoGerente = new Date();
-        this.metaVentasMensual = 0;
+    public Gerente(double bonoRendimiento, Date fechaInicioComoGerente, double metaVentasMensual, double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password) {
+        super(salario, turno, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento, username, password, RolUsuarioEnum.GERENTE);
+        
+        this.bonoRendimiento = bonoRendimiento;
+        this.fechaInicioComoGerente = fechaInicioComoGerente;
+        this.metaVentasMensual = metaVentasMensual;
     }
 
     // Getters y Setters
     public int getIdGerente() {
         return idGerente;
-    }
-
-    public void setIdGerente(int idGerente) {
-        this.idGerente = idGerente;
     }
 
     public double getBonoRendimiento() {

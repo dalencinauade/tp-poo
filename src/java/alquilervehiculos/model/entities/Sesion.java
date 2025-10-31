@@ -1,16 +1,17 @@
 package alquilervehiculos.model.entities;
 
-import alquilervehiculos.model.enums.UsuarioRolEnum;
 import java.util.Date;
+
+import alquilervehiculos.model.enums.RolUsuarioEnum;
 
 public class Sesion {
     private int id;
     private String email;
-    private UsuarioRolEnum rol;
+    private RolUsuarioEnum rol;
     private Date fechaInicio;
     private Date fechaUltimoAcceso;
 
-    public Sesion(int id, String email, UsuarioRolEnum rol) {
+    public Sesion(int id, String email, RolUsuarioEnum rol) {
         this.id = id;
         this.email = email;
         this.rol = rol;
@@ -18,7 +19,7 @@ public class Sesion {
         this.fechaUltimoAcceso = new Date();
     }
 
-    public Sesion(int id, String email, UsuarioRolEnum rol, Date fechaInicio, Date fechaUltimoAcceso) {
+    public Sesion(int id, String email, RolUsuarioEnum rol, Date fechaInicio, Date fechaUltimoAcceso) {
         this.id = id;
         this.email = email;
         this.rol = rol;
@@ -38,11 +39,11 @@ public class Sesion {
         this.email = email;
     }
 
-    public UsuarioRolEnum getRol() {
+    public RolUsuarioEnum getRol() {
         return rol;
     }
 
-    public void setRol(UsuarioRolEnum rol) {
+    public void setRol(RolUsuarioEnum rol) {
         this.rol = rol;
     }
 

@@ -9,7 +9,7 @@ import alquilervehiculos.model.enums.EstadoAlquilerEnum;
 public class Alquiler {
     private int idAlquiler;
     private Date fechaAlquiler;
-    private Date fechaDevolucionPrevista;
+    private Date fechaDevolucion;
     private int kilometrajeInicial;
     private double nivelCombustibleInicial;
     private EstadoAlquilerEnum estadoAlquiler;
@@ -26,17 +26,16 @@ public class Alquiler {
     private String observaciones;
     private List<CargoAdicional> cargosAdicionales; // Relación 1:N con CargoAdicional
 
-    public Alquiler(int id, Date fechaAlquiler, Date fechaDevolucionPrevista, int kilometrajeInicial,
-            double nivelCombustibleInicial, EstadoAlquilerEnum estadoAlquiler,
-            Cliente cliente, Vehiculo vehiculo) {
-        this.idAlquiler = id;
+    public Alquiler(Date fechaAlquiler, int kilometrajeInicial, double nivelCombustibleInicial, Cliente cliente, Vehiculo vehiculo, Contrato contrato) {
         this.fechaAlquiler = fechaAlquiler;
-        this.fechaDevolucionPrevista = fechaDevolucionPrevista;
+        this.fechaDevolucion = null;
         this.kilometrajeInicial = kilometrajeInicial;
         this.nivelCombustibleInicial = nivelCombustibleInicial;
-        this.estadoAlquiler = estadoAlquiler;
+        this.estadoAlquiler = EstadoAlquilerEnum.VIGENTE;
         this.cliente = cliente;
         this.vehiculo = vehiculo;
+        this.contrato = contrato;
+        this.factura = null;
         this.cargosAdicionales = new ArrayList<>();
     }
 
@@ -58,11 +57,11 @@ public class Alquiler {
     }
 
     public Date getFechaDevolucionPrevista() {
-        return fechaDevolucionPrevista;
+        return fechaDevolucion;
     }
 
-    public void setFechaDevolucionPrevista(Date fechaDevolucionPrevista) {
-        this.fechaDevolucionPrevista = fechaDevolucionPrevista;
+    public void setFechaDevolucionPrevista(Date fechaDevolucion) {
+        this.fechaDevolucion = fechaDevolucion;
     }
 
     public int getKilometrajeInicial() {
@@ -246,10 +245,10 @@ public class Alquiler {
      * Calcula la duración en días del alquiler
      */
     public long calcularDuracionDias() {
-        if (fechaAlquiler == null || fechaDevolucionPrevista == null) {
+        if (fechaAlquiler == null || fechaDevolucion == null) {
             return 0;
         }
-        long diferencia = fechaDevolucionPrevista.getTime() - fechaAlquiler.getTime();
+        long diferencia = fechaDevolucion.getTime() - fechaAlquiler.getTime();
         return diferencia / (1000 * 60 * 60 * 24);
     }
 
@@ -257,11 +256,11 @@ public class Alquiler {
      * Calcula los días de retraso en la devolución
      */
     public long calcularDiasRetraso() {
-        if (fechaDevolucionReal == null || fechaDevolucionPrevista == null) {
+        if (fechaDevolucionReal == null || fechaDevolucion == null) {
             return 0;
         }
-        if (fechaDevolucionReal.after(fechaDevolucionPrevista)) {
-            long diferencia = fechaDevolucionReal.getTime() - fechaDevolucionPrevista.getTime();
+        if (fechaDevolucionReal.after(fechaDevolucion)) {
+            long diferencia = fechaDevolucionReal.getTime() - fechaDevolucion.getTime();
             return diferencia / (1000 * 60 * 60 * 24);
         }
         return 0;

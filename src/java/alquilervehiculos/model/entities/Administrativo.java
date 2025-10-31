@@ -1,37 +1,27 @@
 package alquilervehiculos.model.entities;
 
-import alquilervehiculos.model.enums.PuestoAdministrativoEnum;
+import java.util.Date;
+
+import alquilervehiculos.model.enums.RolUsuarioEnum;
+import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
 
 public class Administrativo extends Empleado {
     private int idAdministrativo;
-    private PuestoAdministrativoEnum puesto;
     private int metaAlquileresMensual;
     private int cantidadClientesAtendidos;
     private int cantidadIdiomas;
 
-    public Administrativo(int dni, int legajo, int idAdministrativo) {
-        super(dni, legajo);
-        this.idAdministrativo = idAdministrativo;
-        this.metaAlquileresMensual = 0;
+    public Administrativo(int metaAlquileresMensual, int cantidadIdiomas, double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password) {
+        super(salario, turno, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento, username, password, RolUsuarioEnum.ADMINISTRATIVO);
+
+        this.metaAlquileresMensual = metaAlquileresMensual;
         this.cantidadClientesAtendidos = 0;
-        this.cantidadIdiomas = 0;
+        this.cantidadIdiomas = cantidadIdiomas;
     }
 
     // Getters y Setters
     public int getIdAdministrativo() {
         return idAdministrativo;
-    }
-
-    public void setIdAdministrativo(int idAdministrativo) {
-        this.idAdministrativo = idAdministrativo;
-    }
-
-    public PuestoAdministrativoEnum getPuesto() {
-        return puesto;
-    }
-
-    public void setPuesto(PuestoAdministrativoEnum puesto) {
-        this.puesto = puesto;
     }
 
     public int getMetaAlquileresMensual() {

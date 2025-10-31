@@ -1,22 +1,18 @@
 package alquilervehiculos.model.entities;
 
-import alquilervehiculos.model.enums.EspecialidadTecnicoEnum;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
+import alquilervehiculos.model.enums.RolUsuarioEnum;
+import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
 
 public class Tecnico extends Empleado {
     private int idTecnico;
-    private EspecialidadTecnicoEnum especialidad;
-    private List<String> certificaciones;
-    private Date fechaInicioComoTecnico;
+    private int cantidadRevisiones;
 
-    public Tecnico(int dni, int legajo, int idTecnico) {
-        super(dni, legajo);
-        this.idTecnico = idTecnico;
-        this.certificaciones = new ArrayList<>();
-        this.fechaInicioComoTecnico = new Date();
+    public Tecnico(double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password) {
+        super(salario, turno, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento, username, password, RolUsuarioEnum.TECNICO);
+        
+        this.cantidadRevisiones = 0;
     }
 
     // Getters y Setters
@@ -24,31 +20,11 @@ public class Tecnico extends Empleado {
         return idTecnico;
     }
 
-    public void setIdTecnico(int idTecnico) {
-        this.idTecnico = idTecnico;
+    public int getCantidadRevisiones() {
+        return cantidadRevisiones;
     }
-
-    public EspecialidadTecnicoEnum getEspecialidad() {
-        return especialidad;
-    }
-
-    public void setEspecialidad(EspecialidadTecnicoEnum especialidad) {
-        this.especialidad = especialidad;
-    }
-
-    public List<String> getCertificaciones() {
-        return certificaciones;
-    }
-
-    public void setCertificaciones(List<String> certificaciones) {
-        this.certificaciones = certificaciones;
-    }
-
-    public Date getFechaInicioComoTecnico() {
-        return fechaInicioComoTecnico;
-    }
-
-    public void setFechaInicioComoTecnico(Date fechaInicioComoTecnico) {
-        this.fechaInicioComoTecnico = fechaInicioComoTecnico;
+    
+    public void setCantidadRevisiones() {
+        this.cantidadRevisiones++;
     }
 }

@@ -1,5 +1,8 @@
 package alquilervehiculos.model.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Empresa {
     private int idEmpresa;
     private String nombreEmpresa;
@@ -8,20 +11,23 @@ public class Empresa {
     private String direccion;
     private String ciudad;
     private String pais;
+    private List<Vehiculo> vehiculos;
+    private List<Usuario> usuarios;
 
-    public Empresa(int idEmpresa, String nombreEmpresa, String cuit) {
-        this.idEmpresa = idEmpresa;
+    public Empresa(String nombreEmpresa, String cuit, String sitioWeb, String direccion, String ciudad, String pais) {
         this.nombreEmpresa = nombreEmpresa;
         this.cuit = cuit;
+        this.sitioWeb = sitioWeb;
+        this.direccion = direccion;
+        this.ciudad = ciudad;
+        this.pais = pais;
+        this.vehiculos = new ArrayList<>();
+        this.usuarios = new ArrayList<>();
     }
 
     // Getters y Setters
     public int getIdEmpresa() {
         return idEmpresa;
-    }
-
-    public void setIdEmpresa(int idEmpresa) {
-        this.idEmpresa = idEmpresa;
     }
 
     public String getNombreEmpresa() {
@@ -70,6 +76,22 @@ public class Empresa {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    public List<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
+
+    public void setVehiculos(List<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     // Métodos de negocio

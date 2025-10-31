@@ -1,7 +1,7 @@
 package alquilervehiculos.dao;
 
 import alquilervehiculos.model.entities.Sesion;
-import alquilervehiculos.model.enums.UsuarioRolEnum;
+import alquilervehiculos.model.enums.RolUsuarioEnum;
 import java.sql.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -22,7 +22,7 @@ public class UsuarioDAO {
                 return new Sesion(
                     resultSet.getInt("id"),
                     resultSet.getString("email"),
-                    UsuarioRolEnum.fromId(resultSet.getInt("idRol"))
+                    RolUsuarioEnum.fromId(resultSet.getInt("idRol"))
                 );
             } else {
                 return null; // No se encontró al usuario

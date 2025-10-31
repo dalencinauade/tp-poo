@@ -6,41 +6,21 @@ public class Contrato {
     private int idContrato;
     private Date fechaInicio;
     private Date fechaDevolucionPrevista;
-    private Date fechaDevolucionReal;
-    private int kilometrajeInicial;
-    private double nivelCombustibleInicial;
-    private double costoEstimado;
-    private double costoTotal;
+    private double costoEstipulado;
     private String terminosCondiciones;
     private String firmaCliente;
-    private String estado; // VIGENTE, FINALIZADO, CANCELADO
-    private Alquiler alquiler; // Relación 1:1 con Alquiler
 
-    public Contrato(int idContrato, Date fechaInicio, Date fechaDevolucionPrevista,
-            Date fechaDevolucionReal, int kilometrajeInicial, double nivelCombustibleInicial,
-            double costoEstimado, double costoTotal, String terminosCondiciones,
-            String firmaCliente, String estado, Alquiler alquiler) {
-        this.idContrato = idContrato;
+    public Contrato(Date fechaInicio, Date fechaDevolucionPrevista, double costoEstipulado, String terminosCondiciones, String firmaCliente) {
         this.fechaInicio = fechaInicio;
         this.fechaDevolucionPrevista = fechaDevolucionPrevista;
-        this.fechaDevolucionReal = fechaDevolucionReal;
-        this.kilometrajeInicial = kilometrajeInicial;
-        this.nivelCombustibleInicial = nivelCombustibleInicial;
-        this.costoEstimado = costoEstimado;
-        this.costoTotal = costoTotal;
+        this.costoEstipulado = costoEstipulado;
         this.terminosCondiciones = terminosCondiciones;
         this.firmaCliente = firmaCliente;
-        this.estado = estado;
-        this.alquiler = alquiler;
     }
 
     // Getters y Setters
     public int getIdContrato() {
         return idContrato;
-    }
-
-    public void setIdContrato(int idContrato) {
-        this.idContrato = idContrato;
     }
 
     public Date getFechaInicio() {
@@ -59,28 +39,12 @@ public class Contrato {
         this.fechaDevolucionPrevista = fechaDevolucionPrevista;
     }
 
-    public Date getFechaDevolucionReal() {
-        return fechaDevolucionReal;
+    public double getCostoEstipulado() {
+        return costoEstipulado;
     }
 
-    public void setFechaDevolucionReal(Date fechaDevolucionReal) {
-        this.fechaDevolucionReal = fechaDevolucionReal;
-    }
-
-    public double getCostoEstimado() {
-        return costoEstimado;
-    }
-
-    public void setCostoEstimado(double costoEstimado) {
-        this.costoEstimado = costoEstimado;
-    }
-
-    public double getCostoTotal() {
-        return costoTotal;
-    }
-
-    public void setCostoTotal(double costoTotal) {
-        this.costoTotal = costoTotal;
+    public void setCostoEstipulado(double costoEstipulado) {
+        this.costoEstipulado = costoEstipulado;
     }
 
     public String getTerminosCondiciones() {
@@ -99,65 +63,12 @@ public class Contrato {
         this.firmaCliente = firmaCliente;
     }
 
-    public int getKilometrajeInicial() {
-        return kilometrajeInicial;
-    }
-
-    public void setKilometrajeInicial(int kilometrajeInicial) {
-        this.kilometrajeInicial = kilometrajeInicial;
-    }
-
-    public double getNivelCombustibleInicial() {
-        return nivelCombustibleInicial;
-    }
-
-    public void setNivelCombustibleInicial(double nivelCombustibleInicial) {
-        this.nivelCombustibleInicial = nivelCombustibleInicial;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public Alquiler getAlquiler() {
-        return alquiler;
-    }
-
-    public void setAlquiler(Alquiler alquiler) {
-        this.alquiler = alquiler;
-    }
-
     // Métodos de negocio
-    
-    /**
-     * Finaliza el contrato
-     */
-    public void finalizar() {
-        this.estado = "FINALIZADO";
-    }
-
-    /**
-     * Cancela el contrato
-     */
-    public void cancelar() {
-        this.estado = "CANCELADO";
-    }
-
-    /**
-     * Verifica si el contrato está vigente
-     */
-    public boolean estaVigente() {
-        return "VIGENTE".equals(this.estado);
-    }
 
     /**
      * Genera el texto completo del contrato para impresión
      */
-    public String generarTextoContrato() {
+    public String generarTextoContrato(int kilometrajeInicial, double nivelCombustibleInicial, double costoEstimado) {
         StringBuilder texto = new StringBuilder();
         texto.append("=== CONTRATO DE ALQUILER ===\n");
         texto.append("ID Contrato: ").append(idContrato).append("\n");
@@ -168,7 +79,7 @@ public class Contrato {
         texto.append("Costo Estimado: $").append(costoEstimado).append("\n");
         texto.append("\nTérminos y Condiciones:\n").append(terminosCondiciones).append("\n");
         texto.append("\nFirma Cliente: ").append(firmaCliente).append("\n");
-        texto.append("Estado: ").append(estado).append("\n");
+        //texto.append("Estado: ").append(estado).append("\n");
         return texto.toString();
     }
 }

@@ -14,25 +14,18 @@ public class Mantenimiento {
     private double costo;
     private EstadoMantenimientoEnum estado;
 
-    public Mantenimiento(int idMantenimiento, Date fechaInicio, Date fechaFin, TipoMantenimientoEnum tipo,
-            String descripcion, double costo,
-            EstadoMantenimientoEnum estado) {
-        this.idMantenimiento = idMantenimiento;
+    public Mantenimiento(Date fechaInicio, Date fechaFin, TipoMantenimientoEnum tipo, String descripcion, double costo) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.tipo = tipo;
         this.descripcion = descripcion;
         this.costo = costo;
-        this.estado = estado;
+        this.estado = EstadoMantenimientoEnum.EN_PROCESO;
     }
 
     // Getters y Setters
     public int getIdMantenimiento() {
         return idMantenimiento;
-    }
-
-    public void setIdMantenimiento(int idMantenimiento) {
-        this.idMantenimiento = idMantenimiento;
     }
 
     public Date getFechaInicio() {
@@ -103,13 +96,6 @@ public class Mantenimiento {
         if (this.fechaFin == null) {
             this.fechaFin = new Date();
         }
-    }
-
-    /**
-     * Cancela el mantenimiento
-     */
-    public void cancelar() {
-        this.estado = EstadoMantenimientoEnum.CANCELADO;
     }
 
     /**

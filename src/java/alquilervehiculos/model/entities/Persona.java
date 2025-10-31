@@ -2,27 +2,34 @@ package alquilervehiculos.model.entities;
 
 import java.util.Date;
 
-public abstract class Persona {
-    private int dni;
+import alquilervehiculos.model.enums.RolUsuarioEnum;
+
+public abstract class Persona extends Usuario {
+    private int idPersona;
     private String nombre;
     private String apellido;
     private String email;
+    private String dni;
     private String telefono;
     private String direccion;
     private Date fechaNacimiento;
     private Usuario usuario; // Relación 1:1 con Usuario
 
-    public Persona(int dni) {
+    public Persona(String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password, RolUsuarioEnum rol) {
+        super(username, password, rol);
+        
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
         this.dni = dni;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     // Getters y Setters
-    public int getDni() {
-        return dni;
-    }
-
-    public void setDni(int dni) {
-        this.dni = dni;
+    public int getIdPersona() {
+        return idPersona;
     }
 
     public String getNombre() {
@@ -47,6 +54,14 @@ public abstract class Persona {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getTelefono() {

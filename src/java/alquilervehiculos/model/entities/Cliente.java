@@ -4,30 +4,27 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import alquilervehiculos.model.enums.RolUsuarioEnum;
+
 public class Cliente extends Persona {
     private int idCliente;
     private String numeroLicencia;
     private Date fechaVencimientoLicencia;
-    private String tipoLicencia;
     private List<Alquiler> historialAlquileres;
+
     private int limiteClienteFrecuente = 5;
 
-    public Cliente(int dni, int idCliente, String numeroLicencia, Date fechaVencimientoLicencia, String tipoLicencia) {
-        super(dni);
-        this.idCliente = idCliente;
+    public Cliente(String numeroLicencia, Date fechaVencimientoLicencia, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password) {
+        super(nombre, apellido, email, dni, telefono, direccion, fechaNacimiento, username, password, RolUsuarioEnum.CLIENTE);
+        
         this.numeroLicencia = numeroLicencia;
         this.fechaVencimientoLicencia = fechaVencimientoLicencia;
-        this.tipoLicencia = tipoLicencia;
         this.historialAlquileres = new ArrayList<>();
     }
 
     // Getters y Setters
     public int getIdCliente() {
         return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
     }
 
     public String getNumeroLicencia() {
@@ -44,14 +41,6 @@ public class Cliente extends Persona {
 
     public void setFechaVencimientoLicencia(Date fechaVencimientoLicencia) {
         this.fechaVencimientoLicencia = fechaVencimientoLicencia;
-    }
-
-    public String getTipoLicencia() {
-        return tipoLicencia;
-    }
-
-    public void setTipoLicencia(String tipoLicencia) {
-        this.tipoLicencia = tipoLicencia;
     }
 
     public List<Alquiler> getHistorialAlquileres() {

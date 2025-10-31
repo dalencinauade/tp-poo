@@ -1,6 +1,6 @@
 package alquilervehiculos.model.enums;
 
-public enum UsuarioRolEnum {
+public enum RolUsuarioEnum {
     ADMIN(1),
     CLIENTE(2),
     ADMINISTRATIVO(3),
@@ -9,7 +9,7 @@ public enum UsuarioRolEnum {
 
     private final int id;
 
-    UsuarioRolEnum(int id) {
+    RolUsuarioEnum(int id) {
         this.id = id;
     }
 
@@ -17,9 +17,9 @@ public enum UsuarioRolEnum {
         return id;
     }
 
-    // Método para convertir el Id de rol de la base de datos a USUARIOROLENUM
-    public static UsuarioRolEnum fromId(int id) {
-        for (UsuarioRolEnum rol : values()) {
+    // Método para convertir el Id de rol de la base de datos a RolUsuarioEnum
+    public static RolUsuarioEnum fromId(int id) {
+        for (RolUsuarioEnum rol : values()) {
             if (rol.getId() == id) {
                 return rol;
             }

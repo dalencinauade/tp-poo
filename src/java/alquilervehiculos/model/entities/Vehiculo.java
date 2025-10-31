@@ -15,7 +15,7 @@ public abstract class Vehiculo {
     private EstadoVehiculoEnum estado;
 
     public Vehiculo(int idVehiculo, String patente, String marca, String modelo, int anio,
-            double precioDiario, double capacidadTanque, CategoriaVehiculoEnum categoria, EstadoVehiculoEnum estado) {
+            double precioDiario, double capacidadTanque, CategoriaVehiculoEnum categoria) {
         this.idVehiculo = idVehiculo;
         this.patente = patente;
         this.marca = marca;
@@ -24,7 +24,7 @@ public abstract class Vehiculo {
         this.precioDiario = precioDiario;
         this.capacidadTanque = capacidadTanque;
         this.categoria = categoria;
-        this.estado = estado;
+        this.estado = EstadoVehiculoEnum.DISPONIBLE;
     }
 
     // Getters y Setters

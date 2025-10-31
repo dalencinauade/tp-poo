@@ -1,28 +1,25 @@
 package alquilervehiculos.model.entities;
 
-import alquilervehiculos.model.enums.EstadoFacturaEnum;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import alquilervehiculos.model.enums.EstadoFacturaEnum;
+
 public class Factura {
     private int idFactura;
-    private Date fechaEmision;
+    private Date fecha;
     private double subtotal;
-    private double impuestos;
     private double total;
     private EstadoFacturaEnum estado;
     private Alquiler alquiler; // Relación 1:1 con Alquiler
     private List<DetalleFactura> detalles; // Relación 1:N con DetalleFactura
 
-    public Factura(int idFactura, Date fechaEmision, double subtotal,
-            double impuestos, double total, EstadoFacturaEnum estado, Alquiler alquiler) {
-        this.idFactura = idFactura;
-        this.fechaEmision = fechaEmision;
+    public Factura(Date fecha, double subtotal, double total, Alquiler alquiler) {
+        this.fecha = fecha;
         this.subtotal = subtotal;
-        this.impuestos = impuestos;
         this.total = total;
-        this.estado = estado;
+        this.estado = EstadoFacturaEnum.EMITIDA;
         this.alquiler = alquiler;
         this.detalles = new ArrayList<>();
     }
@@ -32,16 +29,12 @@ public class Factura {
         return idFactura;
     }
 
-    public void setIdFactura(int idFactura) {
-        this.idFactura = idFactura;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public Date getFechaEmision() {
-        return fechaEmision;
-    }
-
-    public void setFechaEmision(Date fechaEmision) {
-        this.fechaEmision = fechaEmision;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public double getSubtotal() {
@@ -50,14 +43,6 @@ public class Factura {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
-    }
-
-    public double getImpuestos() {
-        return impuestos;
-    }
-
-    public void setImpuestos(double impuestos) {
-        this.impuestos = impuestos;
     }
 
     public double getTotal() {
@@ -100,15 +85,14 @@ public class Factura {
         this.subtotal = detalles.stream()
                 .mapToDouble(DetalleFactura::getSubtotal)
                 .sum();
-        this.total = this.subtotal + this.impuestos;
+        this.total = this.subtotal + (this.subtotal * 0.21);
     }
 
     /**
      * Calcula los impuestos basado en el subtotal (21% IVA por defecto)
      */
     public void calcularImpuestos() {
-        this.impuestos = this.subtotal * 0.21;
-        this.total = this.subtotal + this.impuestos;
+        this.total = this.subtotal + (this.subtotal * 0.21);
     }
 
     /**
@@ -116,13 +100,6 @@ public class Factura {
      */
     public void marcarComoPagada() {
         this.estado = EstadoFacturaEnum.PAGADA;
-    }
-
-    /**
-     * Marca la factura como pendiente
-     */
-    public void marcarComoPendiente() {
-        this.estado = EstadoFacturaEnum.PENDIENTE;
     }
 
     /**
@@ -142,8 +119,8 @@ public class Factura {
     /**
      * Verifica si la factura está pendiente
      */
-    public boolean estaPendiente() {
-        return this.estado == EstadoFacturaEnum.PENDIENTE;
+    public boolean estaEmitida() {
+        return this.estado == EstadoFacturaEnum.EMITIDA;
     }
 
     /**
@@ -153,7 +130,7 @@ public class Factura {
         StringBuilder texto = new StringBuilder();
         texto.append("=== FACTURA ===\n");
         texto.append("ID: ").append(idFactura).append("\n");
-        texto.append("Fecha Emisión: ").append(fechaEmision).append("\n\n");
+        texto.append("Fecha Emisión: ").append(fecha).append("\n\n");
         texto.append("DETALLES:\n");
         for (DetalleFactura detalle : detalles) {
             texto.append("- ").append(detalle.getConcepto())
@@ -161,7 +138,7 @@ public class Factura {
                  .append(" = $").append(detalle.getSubtotal()).append("\n");
         }
         texto.append("\nSubtotal: $").append(subtotal).append("\n");
-        texto.append("Impuestos (21%): $").append(impuestos).append("\n");
+        texto.append("Impuestos (21%): $").append((this.subtotal * 0.21)).append("\n");
         texto.append("TOTAL: $").append(total).append("\n");
         texto.append("\nEstado: ").append(estado).append("\n");
         return texto.toString();
