@@ -1,10 +1,9 @@
 package alquilervehiculos.model.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import alquilervehiculos.model.enums.RolUsuarioEnum;
-
-public abstract class Persona extends Usuario {
+public abstract class Persona {
     private int idPersona;
     private String nombre;
     private String apellido;
@@ -13,11 +12,8 @@ public abstract class Persona extends Usuario {
     private String telefono;
     private String direccion;
     private Date fechaNacimiento;
-    private Usuario usuario; // Relación 1:1 con Usuario
 
-    public Persona(String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password, RolUsuarioEnum rol) {
-        super(username, password, rol);
-        
+    public Persona(String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -30,6 +26,10 @@ public abstract class Persona extends Usuario {
     // Getters y Setters
     public int getIdPersona() {
         return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getNombre() {
@@ -88,11 +88,7 @@ public abstract class Persona extends Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public String getFechaNacimientoString() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fechaNacimiento);
     }
 }

@@ -25,6 +25,7 @@ public class ConexionSQLite {
             String connectionString = "jdbc:sqlite:" + dbFile.getAbsolutePath();
             connection = DriverManager.getConnection(connectionString);
         }
+        
         return connection;
     }
 

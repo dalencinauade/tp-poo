@@ -1,69 +1,45 @@
 package alquilervehiculos.model.entities;
 
-import java.util.Date;
-
 import alquilervehiculos.model.enums.RolUsuarioEnum;
 
 public class Sesion {
     private int id;
-    private String email;
+    private String username;
+    private String nombre;
     private RolUsuarioEnum rol;
-    private Date fechaInicio;
-    private Date fechaUltimoAcceso;
 
-    public Sesion(int id, String email, RolUsuarioEnum rol) {
+    public Sesion(int id, String username, String nombre, RolUsuarioEnum rol) {
         this.id = id;
-        this.email = email;
+        this.username = username;
+        this.nombre = nombre;
         this.rol = rol;
-        this.fechaInicio = new Date(); // Se inicializa automáticamente al crear la sesión
-        this.fechaUltimoAcceso = new Date();
-    }
-
-    public Sesion(int id, String email, RolUsuarioEnum rol, Date fechaInicio, Date fechaUltimoAcceso) {
-        this.id = id;
-        this.email = email;
-        this.rol = rol;
-        this.fechaInicio = fechaInicio;
-        this.fechaUltimoAcceso = fechaUltimoAcceso;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public RolUsuarioEnum getRol() {
         return rol;
     }
 
     public void setRol(RolUsuarioEnum rol) {
         this.rol = rol;
-    }
-
-    public Date getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public Date getFechaUltimoAcceso() {
-        return fechaUltimoAcceso;
-    }
-
-    public void setFechaUltimoAcceso(Date fechaUltimoAcceso) {
-        this.fechaUltimoAcceso = fechaUltimoAcceso;
-    }
-
-    public void actualizarUltimoAcceso() {
-        this.fechaUltimoAcceso = new Date();
     }
 }

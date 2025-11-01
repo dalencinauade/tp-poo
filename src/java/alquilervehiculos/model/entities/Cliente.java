@@ -1,30 +1,27 @@
 package alquilervehiculos.model.entities;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import alquilervehiculos.model.enums.RolUsuarioEnum;
 
 public class Cliente extends Persona {
     private int idCliente;
     private String numeroLicencia;
     private Date fechaVencimientoLicencia;
-    private List<Alquiler> historialAlquileres;
 
-    private int limiteClienteFrecuente = 5;
-
-    public Cliente(String numeroLicencia, Date fechaVencimientoLicencia, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password) {
-        super(nombre, apellido, email, dni, telefono, direccion, fechaNacimiento, username, password, RolUsuarioEnum.CLIENTE);
+    public Cliente(String numeroLicencia, Date fechaVencimientoLicencia, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
+        super(nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
         
         this.numeroLicencia = numeroLicencia;
         this.fechaVencimientoLicencia = fechaVencimientoLicencia;
-        this.historialAlquileres = new ArrayList<>();
     }
 
     // Getters y Setters
     public int getIdCliente() {
         return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNumeroLicencia() {
@@ -43,12 +40,8 @@ public class Cliente extends Persona {
         this.fechaVencimientoLicencia = fechaVencimientoLicencia;
     }
 
-    public List<Alquiler> getHistorialAlquileres() {
-        return historialAlquileres;
-    }
-
-    public void setHistorialAlquileres(List<Alquiler> historialAlquileres) {
-        this.historialAlquileres = historialAlquileres;
+    public String getFechaVencimientoLicenciaString() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fechaVencimientoLicencia);
     }
 
     // Métodos de negocio
@@ -61,26 +54,5 @@ public class Cliente extends Persona {
             return false;
         }
         return this.fechaVencimientoLicencia.after(new Date());
-    }
-
-    /**
-     * Agrega un alquiler al historial del cliente
-     */
-    public void agregarAlquiler(Alquiler alquiler) {
-        this.historialAlquileres.add(alquiler);
-    }
-
-    /**
-     * Obtiene la cantidad de alquileres realizados
-     */
-    public int getCantidadAlquileres() {
-        return this.historialAlquileres.size();
-    }
-
-    /**
-     * Verifica si es un cliente frecuente (más de 5 alquileres)
-     */
-    public boolean esClienteFrecuente() {
-        return this.historialAlquileres.size() >= this.limiteClienteFrecuente;
     }
 }

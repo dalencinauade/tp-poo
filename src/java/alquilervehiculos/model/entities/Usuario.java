@@ -1,8 +1,8 @@
 package alquilervehiculos.model.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import alquilervehiculos.model.enums.EstadoUsuarioEnum;
 import alquilervehiculos.model.enums.RolUsuarioEnum;
 
 public class Usuario {
@@ -11,16 +11,12 @@ public class Usuario {
     private String password;
     private RolUsuarioEnum rol;
     private Date fechaCreacion;
-    private Date ultimoAcceso;
-    private EstadoUsuarioEnum estado;
 
     public Usuario(String username, String password, RolUsuarioEnum rol) {
+        this.username = username;
+        this.password = password;
+        this.rol = rol;
         this.fechaCreacion = new Date();
-        this.ultimoAcceso = null;
-        this.estado = EstadoUsuarioEnum.ACTIVO;
-
-        // Llamar a servicio para guardar en DB
-        // Asignar idUsuario con el id insertado en DB
     }
 
     // Getters y Setters
@@ -60,65 +56,11 @@ public class Usuario {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Date getUltimoAcceso() {
-        return ultimoAcceso;
-    }
-
-    public void setUltimoAcceso(Date ultimoAcceso) {
-        this.ultimoAcceso = ultimoAcceso;
-    }
-
-    public EstadoUsuarioEnum getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoUsuarioEnum estado) {
-        this.estado = estado;
+    public String getFechaCreacionString() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fechaCreacion);
     }
 
     // Métodos de negocio
-    
-    /**
-     * Verifica si el usuario está activo
-     */
-    public boolean estaActivo() {
-        return this.estado == EstadoUsuarioEnum.ACTIVO;
-    }
-
-    /**
-     * Verifica si el usuario está bloqueado
-     */
-    public boolean estaBloqueado() {
-        return this.estado == EstadoUsuarioEnum.BLOQUEADO;
-    }
-
-    /**
-     * Activa el usuario
-     */
-    public void activar() {
-        this.estado = EstadoUsuarioEnum.ACTIVO;
-    }
-
-    /**
-     * Suspende el usuario
-     */
-    public void suspender() {
-        this.estado = EstadoUsuarioEnum.SUSPENDIDO;
-    }
-
-    /**
-     * Bloquea el usuario
-     */
-    public void bloquear() {
-        this.estado = EstadoUsuarioEnum.BLOQUEADO;
-    }
-
-    /**
-     * Actualiza la fecha de último acceso
-     */
-    public void actualizarUltimoAcceso() {
-        this.ultimoAcceso = new Date();
-    }
 
     /**
      * Verifica si es administrador

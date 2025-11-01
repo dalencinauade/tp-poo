@@ -2,7 +2,6 @@ package alquilervehiculos.model.entities;
 
 import java.util.Date;
 
-import alquilervehiculos.model.enums.RolUsuarioEnum;
 import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
 
 public class Administrativo extends Empleado {
@@ -11,8 +10,8 @@ public class Administrativo extends Empleado {
     private int cantidadClientesAtendidos;
     private int cantidadIdiomas;
 
-    public Administrativo(int metaAlquileresMensual, int cantidadIdiomas, double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password) {
-        super(salario, turno, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento, username, password, RolUsuarioEnum.ADMINISTRATIVO);
+    public Administrativo(int metaAlquileresMensual, int cantidadIdiomas, double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
+        super(salario, turno, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
 
         this.metaAlquileresMensual = metaAlquileresMensual;
         this.cantidadClientesAtendidos = 0;

@@ -3,15 +3,14 @@ package alquilervehiculos.model.entities;
 import java.util.Date;
 
 import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
-import alquilervehiculos.model.enums.RolUsuarioEnum;
 
 public abstract class Empleado extends Persona {
     private int legajo;
     private double salario;
     private TurnoEmpleadoEnum turno;
 
-    public Empleado(double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento, String username, String password, RolUsuarioEnum rol) {
-        super(nombre, apellido, email, dni, telefono, direccion, fechaNacimiento, username, password, rol);
+    public Empleado(double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
+        super(nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
         
         this.salario = salario;
         this.turno = turno;
