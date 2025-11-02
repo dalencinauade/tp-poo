@@ -23,11 +23,10 @@ public class ClientePrincipal extends JFrame {
         setLocationRelativeTo(null);
 
         JLabel labelBienvenida = new JLabel("Bienvenido " + usuarioController.getSesionActual().getNombre());
-        JButton btnLogout = new JButton("Cerrar sesión");
-
-        btnLogout.addActionListener(e -> logout());
-
         add(labelBienvenida);
+
+        JButton btnLogout = new JButton("Cerrar sesión");
+        btnLogout.addActionListener(e -> logout());
         add(btnLogout);
     }
 

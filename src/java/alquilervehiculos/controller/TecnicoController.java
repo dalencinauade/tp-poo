@@ -2,29 +2,29 @@ package alquilervehiculos.controller;
 
 import java.util.Date;
 
-import alquilervehiculos.model.entities.Cliente;
 import alquilervehiculos.model.entities.Respuesta;
+import alquilervehiculos.model.entities.Tecnico;
 import alquilervehiculos.model.entities.Usuario;
 import alquilervehiculos.model.enums.RolUsuarioEnum;
-import alquilervehiculos.service.ClienteService;
+import alquilervehiculos.service.TecnicoService;
 
-public class ClienteController {
-    private ClienteService clienteService;
+public class TecnicoController {
+    private TecnicoService tecnicoService;
 
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
+    public TecnicoController(TecnicoService tecnicoService) {
+        this.tecnicoService = tecnicoService;
     }
 
     public Respuesta registrar(String nombre, String apellido, String email, String dni, String telefono, String direccion,
-    Date fechaNacimiento, String numeroLicencia, Date fechaVencimientoLicencia, String username, String password) {
+    Date fechaNacimiento, String username, String password, String legajo, String salario) {
         boolean exito = false;
         String mensaje = "";
 
         try {
             Usuario usuario = new Usuario(username, password, RolUsuarioEnum.CLIENTE);
-            Cliente cliente = new Cliente(numeroLicencia, fechaVencimientoLicencia, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
+            Tecnico tecnico = new Tecnico(legajo, Double.parseDouble(salario), nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
 
-            exito = clienteService.registrar(usuario, cliente);
+            exito = tecnicoService.registrar(usuario, tecnico);
         } catch (Exception e) {
             mensaje = e.getMessage();
         }

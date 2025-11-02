@@ -25,38 +25,35 @@ public class Login extends JFrame {
 
         JLabel labelTitulo = new JLabel("Alquiler de vehículos");
         labelTitulo.setBounds(280, 20, 200, 25);
+        add(labelTitulo);
 
         JLabel labelUsername = new JLabel("Usuario:");
         labelUsername.setBounds(100, 60, 100, 25);
-        JTextField textUsername = new JTextField(20);
-        textUsername.setBounds(200, 60, 350, 25);
-        textUsername.setText("admin");
+        add(labelUsername);
+        JTextField txtUsername = new JTextField(20);
+        txtUsername.setBounds(200, 60, 350, 25);
+        txtUsername.setText("admin");
+        add(txtUsername);
 
         JLabel labelPassword = new JLabel("Contraseña:");
         labelPassword.setBounds(100, 110, 100, 25);
-        JPasswordField textPassword = new JPasswordField(20);
-        textPassword.setBounds(200, 110, 350, 25);
-        textPassword.setText("admin");
+        add(labelPassword);
+        JPasswordField txtPassword = new JPasswordField(20);
+        txtPassword.setBounds(200, 110, 350, 25);
+        txtPassword.setText("admin");
+        add(txtPassword);
 
         JButton btnLogin = new JButton("Iniciar sesión");
         btnLogin.setBounds(200, 160, 150, 25);
+        btnLogin.addActionListener(e -> login(txtUsername.getText(), new String(txtPassword.getPassword())));
+        add(btnLogin);
 
         JButton btnRegistro = new JButton("Registrarse");
         btnRegistro.setBounds(400, 160, 150, 25);
+        btnRegistro.addActionListener(e -> registrarse());
+        add(btnRegistro);
 
         getRootPane().setDefaultButton(btnLogin);
-
-        btnLogin.addActionListener(e -> login(textUsername.getText(), new String(textPassword.getPassword())));
-
-        btnRegistro.addActionListener(e -> registrarse());
-
-        add(labelTitulo);
-        add(labelUsername);
-        add(textUsername);
-        add(labelPassword);
-        add(textPassword);
-        add(btnLogin);
-        add(btnRegistro);
     }
 
     private void login(String username, String password) {

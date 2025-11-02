@@ -1,8 +1,7 @@
 package alquilervehiculos.model.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
 
 public class Gerente extends Empleado {
     private int idGerente;
@@ -10,8 +9,8 @@ public class Gerente extends Empleado {
     private Date fechaInicioComoGerente;
     private double metaVentasMensual;
 
-    public Gerente(double bonoRendimiento, Date fechaInicioComoGerente, double metaVentasMensual, double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
-        super(salario, turno, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
+    public Gerente(double bonoRendimiento, Date fechaInicioComoGerente, double metaVentasMensual, String legajo, double salario, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
+        super(legajo, salario, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
         
         this.bonoRendimiento = bonoRendimiento;
         this.fechaInicioComoGerente = fechaInicioComoGerente;
@@ -21,6 +20,10 @@ public class Gerente extends Empleado {
     // Getters y Setters
     public int getIdGerente() {
         return idGerente;
+    }
+
+    public void setIdGerente(int idGerente) {
+        this.idGerente = idGerente;
     }
 
     public double getBonoRendimiento() {
@@ -45,5 +48,9 @@ public class Gerente extends Empleado {
 
     public void setMetaVentasMensual(double metaVentasMensual) {
         this.metaVentasMensual = metaVentasMensual;
+    }
+
+    public String getFechaInicioComoGerenteString() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(fechaInicioComoGerente);
     }
 }

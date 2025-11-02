@@ -47,7 +47,7 @@ public class UsuarioDAO {
             int filas = statement.executeUpdate();
             
             if (filas == 0) {
-                throw new SQLException("No se pudo insertar el usuario, ninguna fila afectada");
+                throw new SQLException("No se pudo insertar el usuario. Ninguna fila afectada");
             }
 
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {

@@ -2,25 +2,27 @@ package alquilervehiculos.model.entities;
 
 import java.util.Date;
 
-import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
-
 public class Administrativo extends Empleado {
     private int idAdministrativo;
     private int metaAlquileresMensual;
     private int cantidadClientesAtendidos;
-    private int cantidadIdiomas;
+    private String idiomas;
 
-    public Administrativo(int metaAlquileresMensual, int cantidadIdiomas, double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
-        super(salario, turno, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
+    public Administrativo(int metaAlquileresMensual, String idiomas, String legajo, double salario, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
+        super(legajo, salario, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
 
         this.metaAlquileresMensual = metaAlquileresMensual;
         this.cantidadClientesAtendidos = 0;
-        this.cantidadIdiomas = cantidadIdiomas;
+        this.idiomas = idiomas;
     }
 
     // Getters y Setters
     public int getIdAdministrativo() {
         return idAdministrativo;
+    }
+
+    public void setIdAdministrativo(int idAdministrativo) {
+        this.idAdministrativo = idAdministrativo;
     }
 
     public int getMetaAlquileresMensual() {
@@ -39,11 +41,11 @@ public class Administrativo extends Empleado {
         this.cantidadClientesAtendidos = cantidadClientesAtendidos;
     }
 
-    public int getCantidadIdiomas() {
-        return cantidadIdiomas;
+    public String getIdiomas() {
+        return idiomas;
     }
 
-    public void setCantidadIdiomas(int cantidadIdiomas) {
-        this.cantidadIdiomas = cantidadIdiomas;
+    public void setCantidadIdiomas(String idiomas) {
+        this.idiomas = idiomas;
     }
 }

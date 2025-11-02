@@ -2,26 +2,32 @@ package alquilervehiculos.model.entities;
 
 import java.util.Date;
 
-import alquilervehiculos.model.enums.TurnoEmpleadoEnum;
-
 public abstract class Empleado extends Persona {
-    private int legajo;
+    private int idEmpleado;
+    private String legajo;
     private double salario;
-    private TurnoEmpleadoEnum turno;
 
-    public Empleado(double salario, TurnoEmpleadoEnum turno, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
+    public Empleado(String legajo, double salario, String nombre, String apellido, String email, String dni, String telefono, String direccion, Date fechaNacimiento) {
         super(nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
         
+        this.legajo = legajo;
         this.salario = salario;
-        this.turno = turno;
     }
 
     // Getters y Setters
-    public int getLegajo() {
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    public String getLegajo() {
         return legajo;
     }
 
-    public void setLegajo(int legajo) {
+    public void setLegajo(String legajo) {
         this.legajo = legajo;
     }
 
@@ -31,13 +37,5 @@ public abstract class Empleado extends Persona {
 
     public void setSalario(double salario) {
         this.salario = salario;
-    }
-
-    public TurnoEmpleadoEnum getTurno() {
-        return turno;
-    }
-
-    public void setTurno(TurnoEmpleadoEnum turno) {
-        this.turno = turno;
     }
 }

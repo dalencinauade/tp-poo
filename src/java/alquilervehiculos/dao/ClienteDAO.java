@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import alquilervehiculos.model.entities.Cliente;
 
 public class ClienteDAO {
+    
     public boolean registrar(Connection connection, Cliente cliente) throws SQLException {
-        String query = "INSERT INTO clientes (id, numeroLicencia, fechaVencimientoLicencia) VALUES (?, ?, ?)";
+        String query = "INSERT INTO clientes (idCliente, numeroLicencia, fechaVencimientoLicencia) VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, cliente.getIdCliente());
