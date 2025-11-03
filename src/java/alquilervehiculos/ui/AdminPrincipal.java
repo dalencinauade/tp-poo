@@ -30,14 +30,23 @@ public class AdminPrincipal extends JFrame {
         btnUsuarios.addActionListener(e -> adminUsuarios());
         add(btnUsuarios);
 
+        JButton btnVehiculos = new JButton("Administración de vehículos");
+        btnVehiculos.setBounds(20, 80, 200, 25);
+        btnVehiculos.addActionListener(e -> adminVehiculos());
+        add(btnVehiculos);
+
         JButton btnLogout = new JButton("Cerrar sesión");
-        btnLogout.setBounds(20, 80, 200, 25);
+        btnLogout.setBounds(20, 110, 200, 25);
         btnLogout.addActionListener(e -> logout());
         add(btnLogout);
     }
 
     private void adminUsuarios() {
         new AdminUsuarios(this, true).setVisible(true);
+    }
+
+    private void adminVehiculos() {
+        new AdminVehiculos(this, true).setVisible(true);
     }
 
     private void logout() {

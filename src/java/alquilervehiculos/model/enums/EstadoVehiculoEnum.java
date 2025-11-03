@@ -3,7 +3,7 @@ package alquilervehiculos.model.enums;
 public enum EstadoVehiculoEnum {
     DISPONIBLE(1),
     ALQUILADO(2),
-    MANTENIMIENTO(3),
+    EN_MANTENIMIENTO(3),
     FUERA_DE_SERVICIO(4);
 
     private final int id;
@@ -25,5 +25,35 @@ public enum EstadoVehiculoEnum {
         }
         
         throw new IllegalArgumentException("Id de estado de vehículo inválido: " + id);
+    }
+
+    public static String toString(EstadoVehiculoEnum categoria) {
+        switch (categoria) {
+            case DISPONIBLE:
+                return "Disponible";
+            case ALQUILADO:
+                return "Alquilado";
+            case EN_MANTENIMIENTO:
+                return "En mantenimiento";
+            case FUERA_DE_SERVICIO:
+                return "Fuera de servicio";
+            default:
+                return "Desconocido";
+        }
+    }
+
+    public static EstadoVehiculoEnum toEnum(String estado) {
+        switch (estado) {
+            case "Disponible":
+                return DISPONIBLE;
+            case "Alquilado":
+                return ALQUILADO;
+            case "En mantenimiento":
+                return EN_MANTENIMIENTO;
+            case "Fuera de servicio":
+                return FUERA_DE_SERVICIO;
+            default:
+                return null;
+        }
     }
 }

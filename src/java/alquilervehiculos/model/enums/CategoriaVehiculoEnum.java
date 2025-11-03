@@ -1,13 +1,12 @@
 package alquilervehiculos.model.enums;
 
 public enum CategoriaVehiculoEnum {
-    MOTO(1),
-    COMPACTO(2),
-    SEDAN(3),
-    SUV(4),
-    PICKUP(5),
-    LUJO(6),
-    DEPORTIVO(7);
+    COMPACTO(1),
+    SEDAN(2),
+    SUV(3),
+    PICKUP(4),
+    LUJO(5),
+    DEPORTIVO(6);
 
     private final int id;
 
@@ -27,5 +26,43 @@ public enum CategoriaVehiculoEnum {
             }
         }
         throw new IllegalArgumentException("Id de categoría de vehículo no válida: " + id);
+    }
+
+    public static String toString(CategoriaVehiculoEnum categoria) {
+        switch (categoria) {
+            case COMPACTO:
+                return "Compacto";
+            case SEDAN:
+                return "Sedán";
+            case SUV:
+                return "SUV";
+            case PICKUP:
+                return "Pickup";
+            case LUJO:
+                return "Lujo";
+            case DEPORTIVO:
+                return "Deportivo";
+            default:
+                return "Desconocido";
+        }
+    }
+
+    public static CategoriaVehiculoEnum toEnum(String categoria) {
+        switch (categoria) {
+            case "Compacto":
+                return COMPACTO;
+            case "Sedán":
+                return SEDAN;
+            case "SUV":
+                return SUV;
+            case "Pickup":
+                return PICKUP;
+            case "Lujo":
+                return LUJO;
+            case "Deportivo":
+                return DEPORTIVO;
+            default:
+                return null;
+        }
     }
 }

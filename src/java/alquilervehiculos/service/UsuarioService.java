@@ -1,9 +1,7 @@
 package alquilervehiculos.service;
 
-import java.sql.Connection;
 import java.util.List;
 
-import alquilervehiculos.dao.ConexionSQLite;
 import alquilervehiculos.dao.UsuarioDAO;
 import alquilervehiculos.model.dto.ListarUsuariosDTO;
 import alquilervehiculos.model.dto.ObtenerUsuarioParaEdicionDTO;

@@ -11,7 +11,9 @@ public class Alquiler {
     private Date fechaAlquiler;
     private Date fechaDevolucion;
     private int kilometrajeInicial;
+    private int kilometrajeFinal;
     private double nivelCombustibleInicial;
+    private double nivelCombustibleFinal;
     private EstadoAlquilerEnum estadoAlquiler;
     private Cliente cliente; // Relación N:1 con Cliente
     private Vehiculo vehiculo; // Relación N:1 con Vehiculo
@@ -20,8 +22,6 @@ public class Alquiler {
     
     // Atributos de devolución
     private Date fechaDevolucionReal;
-    private int kilometrajeFinal;
-    private double nivelCombustibleFinal;
     private String estadoVehiculo;
     private String observaciones;
     private List<CargoAdicional> cargosAdicionales; // Relación 1:N con CargoAdicional

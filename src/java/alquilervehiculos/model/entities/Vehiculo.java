@@ -3,7 +3,7 @@ package alquilervehiculos.model.entities;
 import alquilervehiculos.model.enums.CategoriaVehiculoEnum;
 import alquilervehiculos.model.enums.EstadoVehiculoEnum;
 
-public abstract class Vehiculo {
+public class Vehiculo {
     private int idVehiculo;
     private String patente;
     private String marca;
@@ -11,20 +11,23 @@ public abstract class Vehiculo {
     private int anio;
     private double precioDiario;
     private double capacidadTanque;
+    private double capacidadTanqueMaxima;
+    private int kilometraje;
     private CategoriaVehiculoEnum categoria;
     private EstadoVehiculoEnum estado;
 
-    public Vehiculo(int idVehiculo, String patente, String marca, String modelo, int anio,
-            double precioDiario, double capacidadTanque, CategoriaVehiculoEnum categoria) {
-        this.idVehiculo = idVehiculo;
+    public Vehiculo(String patente, String marca, String modelo, int anio, double precioDiario, double capacidadTanque,
+    double capacidadTanqueMaxima, int kilometraje, CategoriaVehiculoEnum categoria, EstadoVehiculoEnum estado) {
         this.patente = patente;
         this.marca = marca;
         this.modelo = modelo;
         this.anio = anio;
         this.precioDiario = precioDiario;
         this.capacidadTanque = capacidadTanque;
+        this.capacidadTanqueMaxima = capacidadTanqueMaxima;
+        this.kilometraje = kilometraje;
         this.categoria = categoria;
-        this.estado = EstadoVehiculoEnum.DISPONIBLE;
+        this.estado = estado;
     }
 
     // Getters y Setters
@@ -84,6 +87,22 @@ public abstract class Vehiculo {
         this.capacidadTanque = capacidadTanque;
     }
 
+    public double getCapacidadTanqueMaxima() {
+        return capacidadTanqueMaxima;
+    }
+
+    public void setCapacidadTanqueMaxima(double capacidadTanqueMaxima) {
+        this.capacidadTanqueMaxima = capacidadTanqueMaxima;
+    }
+
+    public int getKilometraje() {
+        return kilometraje;
+    }
+
+    public void setKilometraje(int kilometraje) {
+        this.kilometraje = kilometraje;
+    }
+
     public CategoriaVehiculoEnum getCategoria() {
         return categoria;
     }
@@ -120,7 +139,7 @@ public abstract class Vehiculo {
      * Verifica si el vehículo está en mantenimiento
      */
     public boolean estaEnMantenimiento() {
-        return this.estado == EstadoVehiculoEnum.MANTENIMIENTO;
+        return this.estado == EstadoVehiculoEnum.EN_MANTENIMIENTO;
     }
 
     /**
@@ -141,7 +160,7 @@ public abstract class Vehiculo {
      * Marca el vehículo como en mantenimiento
      */
     public void marcarComoEnMantenimiento() {
-        this.estado = EstadoVehiculoEnum.MANTENIMIENTO;
+        this.estado = EstadoVehiculoEnum.EN_MANTENIMIENTO;
     }
 
     /**
