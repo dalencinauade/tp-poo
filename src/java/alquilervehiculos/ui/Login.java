@@ -66,7 +66,7 @@ public class Login extends JFrame {
             switch (sesion.getRol()) {
                 case ADMIN -> new AdminPrincipal().setVisible(true);
                 case CLIENTE -> new ClientePrincipal().setVisible(true);
-                //case ADMINISTRATIVO -> new AdministrativoPrincipal().setVisible(true);
+                case ADMINISTRATIVO -> new AdministrativoPrincipal().setVisible(true);
                 //case TECNICO -> new TecnicoPrincipal().setVisible(true);
                 //case GERENTE -> new GerentePrincipal().setVisible(true);
             }

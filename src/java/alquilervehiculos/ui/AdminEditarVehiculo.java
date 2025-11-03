@@ -4,8 +4,6 @@ import alquilervehiculos.config.AppContext;
 import alquilervehiculos.controller.VehiculoController;
 import alquilervehiculos.model.dto.ObtenerVehiculoParaEdicionDTO;
 import alquilervehiculos.model.entities.Respuesta;
-import alquilervehiculos.model.enums.CategoriaVehiculoEnum;
-import alquilervehiculos.model.enums.EstadoVehiculoEnum;
 
 import javax.swing.*;
 import java.awt.*;

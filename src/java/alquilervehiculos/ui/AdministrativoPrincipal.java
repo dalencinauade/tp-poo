@@ -1,14 +1,18 @@
 package alquilervehiculos.ui;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 import alquilervehiculos.config.AppContext;
 import alquilervehiculos.controller.UsuarioController;
 
-public class ClientePrincipal extends JFrame {
+public class AdministrativoPrincipal extends JFrame {
     private final UsuarioController usuarioController;
 
-    public ClientePrincipal() {
+    public AdministrativoPrincipal() {
         super("Panel principal");
         this.usuarioController = AppContext.getUsuarioController();
         init();
@@ -25,18 +29,8 @@ public class ClientePrincipal extends JFrame {
         labelBienvenida.setBounds(30, 20, 300, 30);
         add(labelBienvenida);
 
-        JButton btnReservar = new JButton("Reservar vehículo");
-        btnReservar.setBounds(20, 50, 200, 25);
-        btnReservar.addActionListener(e -> reservar());
-        add(btnReservar);
-
-        JButton btnCancelarReserva = new JButton("Cancelar reserva vigente");
-        btnCancelarReserva.setBounds(20, 80, 200, 25);
-        btnCancelarReserva.addActionListener(e -> cancelarReserva());
-        add(btnCancelarReserva);
-
         JButton btnLogout = new JButton("Cerrar sesión");
-        btnLogout.setBounds(20, 110, 200, 25);
+        btnLogout.setBounds(20, 80, 200, 25);
         btnLogout.addActionListener(e -> logout());
         add(btnLogout);
     }
@@ -46,15 +40,5 @@ public class ClientePrincipal extends JFrame {
         JOptionPane.showMessageDialog(this, "Sesión cerrada!");
         new Login().setVisible(true);
         this.dispose();
-    }
-
-    private void reservar() {
-        // Antes de abrir el formulario hay que chequear si el cliente tiene un alquiler en vigencia
-        // Si tiene un alquiler en vigencia, hay que informar y no dejar avanzar hacia la reserva
-        //new ClienteReservarVehiculo(this, true).setVisible(true);
-    }
-
-    private void cancelarReserva() {
-        //new ClienteCancelarReserva(this, true).setVisible(true);
     }
 }
