@@ -2,25 +2,35 @@ package alquilervehiculos.ui;
 
 import alquilervehiculos.config.AppContext;
 import alquilervehiculos.controller.VehiculoController;
+import alquilervehiculos.model.dto.ObtenerVehiculoParaEdicionDTO;
 import alquilervehiculos.model.entities.Respuesta;
+import alquilervehiculos.model.enums.CategoriaVehiculoEnum;
+import alquilervehiculos.model.enums.EstadoVehiculoEnum;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class AdminCrearVehiculo extends JDialog {
+public class AdminEditarVehiculo extends JDialog {
 
     private final VehiculoController vehiculoController;
 
     private JComboBox<String> cmbCategoria, cmbEstado;
-    private JTextField txtPatente, txtMarca, txtModelo, txtAnio;
-    private JTextField txtPrecioDiario, txtCapacidadTanque, txtCapacidadTanqueMaxima, txtKilometraje;
-    private JButton btnCrear, btnCancelar;
+    private JTextField txtPatente, txtMarca, txtModelo, txtAnio, txtPrecioDiario,
+            txtCapacidadTanque, txtCapacidadTanqueMaxima, txtKilometraje;
 
-    public AdminCrearVehiculo(Dialog parent, boolean modal) {
+    private JButton btnEditar, btnCancelar;
+
+    private int idVehiculo;
+
+    public AdminEditarVehiculo(Dialog parent, boolean modal, int idVehiculo) {
         super(parent, modal);
-        setTitle("Registrar Vehículo");
-        vehiculoController = AppContext.getVehiculoController();
+        setTitle("Editar Vehículo");
+
+        this.vehiculoController = AppContext.getVehiculoController();
+        this.idVehiculo = idVehiculo;
+
         init();
+        cargarDatosVehiculo(idVehiculo);
     }
 
     private void init() {
@@ -77,27 +87,27 @@ public class AdminCrearVehiculo extends JDialog {
         add(txtAnio);
 
         // Precio Diario
-        JLabel lblPrecio = new JLabel("Precio diario:");
-        lblPrecio.setBounds(labelX, y += spacing, 150, height);
+        JLabel lblPrecioDiario = new JLabel("Precio diario:");
+        lblPrecioDiario.setBounds(labelX, y += spacing, 150, height);
         txtPrecioDiario = new JTextField();
         txtPrecioDiario.setBounds(fieldX, y, 200, height);
-        add(lblPrecio);
+        add(lblPrecioDiario);
         add(txtPrecioDiario);
 
-        // Capacidad Tanque
-        JLabel lblCapacidad = new JLabel("Capacidad tanque (L):");
-        lblCapacidad.setBounds(labelX, y += spacing, 200, height);
+        // Capacidad del tanque
+        JLabel lblCapacidadTanque = new JLabel("Capacidad tanque:");
+        lblCapacidadTanque.setBounds(labelX, y += spacing, 150, height);
         txtCapacidadTanque = new JTextField();
         txtCapacidadTanque.setBounds(fieldX, y, 200, height);
-        add(lblCapacidad);
+        add(lblCapacidadTanque);
         add(txtCapacidadTanque);
 
-        // Capacidad Tanque Máxima
-        JLabel lblCapacidadMax = new JLabel("Capacidad máxima (L):");
-        lblCapacidadMax.setBounds(labelX, y += spacing, 200, height);
+        // Capacidad máxima del tanque
+        JLabel lblCapacidadTanqueMax = new JLabel("Capacidad tanque máx:");
+        lblCapacidadTanqueMax.setBounds(labelX, y += spacing, 200, height);
         txtCapacidadTanqueMaxima = new JTextField();
         txtCapacidadTanqueMaxima.setBounds(fieldX, y, 200, height);
-        add(lblCapacidadMax);
+        add(lblCapacidadTanqueMax);
         add(txtCapacidadTanqueMaxima);
 
         // Kilometraje
@@ -117,34 +127,54 @@ public class AdminCrearVehiculo extends JDialog {
         add(cmbEstado);
 
         // Botones
-        btnCrear = new JButton("Crear");
-        btnCrear.setBounds(110, y + 60, 120, 30);
-        btnCrear.addActionListener(e -> crear());
-        add(btnCrear);
+        btnEditar = new JButton("Editar");
+        btnEditar.setBounds(110, y + 50, 120, 30);
+        btnEditar.addActionListener(e -> editar());
+        add(btnEditar);
 
         btnCancelar = new JButton("Cancelar");
-        btnCancelar.setBounds(270, y + 60, 120, 30);
+        btnCancelar.setBounds(270, y + 50, 120, 30);
         btnCancelar.addActionListener(e -> cancelar());
         add(btnCancelar);
 
-        setSize(520, y + 180);
+        setSize(520, y + 150);
     }
 
-    private void cancelar() {
-        this.dispose();
+    private void cargarDatosVehiculo(int idVehiculo) {
+        ObtenerVehiculoParaEdicionDTO vehiculo = vehiculoController.obtenerParaEdicion(idVehiculo);
+
+        if (vehiculo != null) {
+            cmbCategoria.setSelectedItem(vehiculo.getCategoria());
+            txtPatente.setText(vehiculo.getPatente());
+            txtMarca.setText(vehiculo.getMarca());
+            txtModelo.setText(vehiculo.getModelo());
+            txtAnio.setText(String.valueOf(vehiculo.getAnio()));
+            txtPrecioDiario.setText(String.valueOf(vehiculo.getPrecioDiario()));
+            txtCapacidadTanque.setText(String.valueOf(vehiculo.getCapacidadTanque()));
+            txtCapacidadTanqueMaxima.setText(String.valueOf(vehiculo.getCapacidadTanqueMaxima()));
+            txtKilometraje.setText(String.valueOf(vehiculo.getKilometraje()));
+            cmbEstado.setSelectedItem(vehiculo.getEstado());
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al obtener el vehículo", "Error", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+        }
     }
 
-    private void crear() {
-        Respuesta respuesta = vehiculoController.crear((String) cmbCategoria.getSelectedItem(), txtPatente.getText(), txtMarca.getText(),
+    private void editar() {
+        Respuesta respuesta = vehiculoController.editar(this.idVehiculo, (String) cmbCategoria.getSelectedItem(), txtPatente.getText(), txtMarca.getText(),
         txtModelo.getText(), Integer.parseInt(txtAnio.getText()), Double.parseDouble(txtPrecioDiario.getText()),
         Double.parseDouble(txtCapacidadTanque.getText()), Double.parseDouble(txtCapacidadTanqueMaxima.getText()),
         Integer.parseInt(txtKilometraje.getText()), (String) cmbEstado.getSelectedItem());
 
         if (respuesta.exito) {
-            JOptionPane.showMessageDialog(this, "Vehículo guardado correctamente");
+            JOptionPane.showMessageDialog(this, "Vehículo editado correctamente");
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Error: " + respuesta.mensaje, "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void cancelar() {
+        this.dispose();
     }
 }

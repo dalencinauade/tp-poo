@@ -15,7 +15,7 @@ public class ListarUsuariosDTO {
         this.rol = rol;
     }
 
-    // getters y setters
+    // Getters y Setters
     public int getId() {
         return id;
     }

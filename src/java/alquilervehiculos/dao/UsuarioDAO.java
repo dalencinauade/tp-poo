@@ -86,12 +86,14 @@ public class UsuarioDAO {
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
+                RolUsuarioEnum rol = RolUsuarioEnum.fromId(rs.getInt("idRol"));
+
                 ListarUsuariosDTO dto = new ListarUsuariosDTO(
                     rs.getInt("idUsuario"),
                     rs.getString("username"),
                     rs.getString("nombre"),
                     rs.getString("apellido"),
-                    RolUsuarioEnum.fromId(rs.getInt("idRol")).toString()
+                    RolUsuarioEnum.toString(rol)
                 );
 
                 lista.add(dto);
@@ -117,12 +119,14 @@ public class UsuarioDAO {
             WHERE idUsuario = ?
         """;
 
+        ObtenerUsuarioParaEdicionDTO dto = null;
+
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, idUsuario);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    ObtenerUsuarioParaEdicionDTO dto = new ObtenerUsuarioParaEdicionDTO();
+                    dto = new ObtenerUsuarioParaEdicionDTO();
                     dto.setNombre(rs.getString("nombre"));
                     dto.setApellido(rs.getString("apellido"));
                     dto.setEmail(rs.getString("email"));
@@ -140,13 +144,11 @@ public class UsuarioDAO {
                     dto.setNumeroLicencia(rs.getString("numeroLicencia"));
                     dto.setFechaVencimientoLicencia(rs.getDate("fechaVencimientoLicencia"));
                     dto.setRol(RolUsuarioEnum.fromId(rs.getInt("idRol")).toString());
-
-                    return dto;
                 }
             }
         }
 
-        return null; // No se encontró el usuario
+        return dto;
     }
 
     private String hashPassword(String password) {

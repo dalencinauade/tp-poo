@@ -29,7 +29,7 @@ public class AdminCrearUsuario extends JDialog {
     private JTextField txtLegajo, txtSalario, txtMetaAlquileresMensual, txtIdiomas, txtBonoRendimiento, txtMetaVentasMensual, txtNumeroLicencia;
     private JSpinner spinnerInicioComoGerente, spinnerVencimientoLicencia;
 
-    private JButton btnGuardar, btnCancelar;
+    private JButton btnRegistrar, btnCancelar;
 
     public AdminCrearUsuario(Dialog parent, boolean modal) {
         super(parent, modal);
@@ -196,14 +196,14 @@ public class AdminCrearUsuario extends JDialog {
         add(lblVencimientoLicencia);
         add(spinnerVencimientoLicencia);
 
-        btnGuardar = new JButton("Registrar");
-        btnGuardar.addActionListener(e -> registrar(txtNombre.getText(), txtApellido.getText(), txtEmail.getText(),
+        btnRegistrar = new JButton("Registrar");
+        btnRegistrar.addActionListener(e -> registrar(txtNombre.getText(), txtApellido.getText(), txtEmail.getText(),
         txtDni.getText(), txtTelefono.getText(), txtDireccion.getText(), (Date)spinnerNacimiento.getValue(),
         txtUsername.getText(), new String(txtPassword.getPassword()), txtLegajo.getText(), txtSalario.getText(),
         (String) cmbRol.getSelectedItem(), txtMetaAlquileresMensual.getText(), txtIdiomas.getText(),
         txtBonoRendimiento.getText(), (Date)spinnerInicioComoGerente.getValue(), txtMetaVentasMensual.getText(),
         txtNumeroLicencia.getText(), (Date)spinnerVencimientoLicencia.getValue()));
-        add(btnGuardar);
+        add(btnRegistrar);
         
         btnCancelar = new JButton("Cancelar");
         btnCancelar.addActionListener(e -> cancelar());
@@ -261,7 +261,7 @@ public class AdminCrearUsuario extends JDialog {
         }
 
         // Botones
-        btnGuardar.setBounds(110, y + 40, 120, 30);
+        btnRegistrar.setBounds(110, y + 40, 120, 30);
         btnCancelar.setBounds(270, y + 40, 120, 30);
 
         // Ajustar tamaño dinámico

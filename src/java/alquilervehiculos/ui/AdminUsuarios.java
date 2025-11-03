@@ -35,6 +35,11 @@ public class AdminUsuarios extends JDialog {
         btnCrearUsuario.addActionListener(e -> crearUsuario());
         add(btnCrearUsuario);
 
+        JButton btnVolver = new JButton("Volver");
+        btnVolver.setBounds(200, 20, 150, 30);
+        btnVolver.addActionListener(e -> volver());
+        add(btnVolver);
+
         // Tabla
         String[] columnas = {"ID", "Usuario", "Nombre", "Apellido", "Rol", "Acción"};
         modeloTabla = new DefaultTableModel(columnas, 0) {
@@ -83,5 +88,9 @@ public class AdminUsuarios extends JDialog {
     private void editarUsuario(int idUsuario) {
         new AdminEditarUsuario(this, true, idUsuario).setVisible(true);
         cargarUsuarios();
+    }
+
+    private void volver() {
+        this.dispose();
     }
 }

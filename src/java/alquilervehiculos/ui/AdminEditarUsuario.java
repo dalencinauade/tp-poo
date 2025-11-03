@@ -184,7 +184,7 @@ public class AdminEditarUsuario extends JDialog {
 
         // Botones
         btnEditar = new JButton("Editar");
-        btnEditar.addActionListener(e -> editarUsuario());
+        btnEditar.addActionListener(e -> editar());
         add(btnEditar);
 
         btnCancelar = new JButton("Cancelar");
@@ -295,7 +295,7 @@ public class AdminEditarUsuario extends JDialog {
         refrescarCamposPorRol();
     }
 
-    private void editarUsuario() {
+    private void editar() {
         Respuesta respuesta = new Respuesta(false, "");
 
         switch (rol) {
