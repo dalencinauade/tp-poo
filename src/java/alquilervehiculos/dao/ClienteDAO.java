@@ -21,4 +21,18 @@ public class ClienteDAO {
             return filas > 0;
         }
     }
+
+    public boolean editar(Connection connection, Cliente cliente) throws SQLException {
+        String query = "UPDATE clientes SET numeroLicencia = ?, fechaVencimientoLicencia = ? WHERE idCliente = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, cliente.getNumeroLicencia());
+            statement.setString(2, cliente.getFechaVencimientoLicenciaString());
+            statement.setInt(3, cliente.getIdCliente());
+
+            int filas = statement.executeUpdate();
+            
+            return filas > 0;
+        }
+    }
 }

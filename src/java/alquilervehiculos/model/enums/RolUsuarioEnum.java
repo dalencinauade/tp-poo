@@ -27,4 +27,21 @@ public enum RolUsuarioEnum {
         
         throw new IllegalArgumentException("Id de rol no válido: " + id);
     }
+
+    public static String toString(RolUsuarioEnum rol) {
+        switch (rol) {
+            case ADMIN:
+                return "Admin";
+            case CLIENTE:
+                return "Cliente";
+            case ADMINISTRATIVO:
+                return "Administrativo";
+            case TECNICO:
+                return "Técnico";
+            case GERENTE:
+                return "Gerente";
+            default:
+                return "Desconocido";
+        }
+    }
 }

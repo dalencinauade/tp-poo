@@ -22,4 +22,18 @@ public class AdministrativoDAO {
             return filas > 0;
         }
     }
+
+    public boolean editar(Connection connection, Administrativo administrativo) throws SQLException {
+        String query = "UPDATE administrativos SET metaAlquileresMensual = ?, idiomas = ? WHERE idAdministrativo = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setDouble(1, administrativo.getMetaAlquileresMensual());
+            statement.setString(2, administrativo.getIdiomas());
+            statement.setInt(3, administrativo.getIdAdministrativo());
+
+            int filas = statement.executeUpdate();
+
+            return filas > 0;
+        }
+    }
 }

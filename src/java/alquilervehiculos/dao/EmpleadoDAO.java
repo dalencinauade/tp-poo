@@ -21,4 +21,18 @@ public class EmpleadoDAO {
             return filas > 0;
         }
     }
+
+    public boolean editar(Connection connection, Empleado empleado) throws SQLException {
+        String query = "UPDATE empleados SET legajo = ?, salario = ? WHERE idEmpleado = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, empleado.getLegajo());
+            statement.setDouble(2, empleado.getSalario());
+            statement.setInt(3, empleado.getIdEmpleado());
+
+            int filas = statement.executeUpdate();
+            
+            return filas > 0;
+        }
+    }
 }

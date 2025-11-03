@@ -31,4 +31,22 @@ public class ClienteController {
 
         return new Respuesta(exito, mensaje);
     }
+
+    public Respuesta editar(int idUsuario, String nombre, String apellido, String email, String dni, String telefono, String direccion,
+    Date fechaNacimiento, String numeroLicencia, Date fechaVencimientoLicencia) {
+        boolean exito = false;
+        String mensaje = "";
+
+        try {
+            Cliente cliente = new Cliente(numeroLicencia, fechaVencimientoLicencia, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
+            cliente.setIdCliente(idUsuario);
+            cliente.setIdPersona(idUsuario);
+
+            exito = clienteService.editar(cliente);
+        } catch (Exception e) {
+            mensaje = e.getMessage();
+        }
+
+        return new Respuesta(exito, mensaje);
+    }
 }

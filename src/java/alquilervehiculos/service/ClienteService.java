@@ -54,4 +54,32 @@ public class ClienteService {
 
         return true;
     }
+
+    public boolean editar(Cliente cliente) throws Exception {
+        Connection connection = null;
+
+        try {
+            connection = ConexionSQLite.getConnection();
+            connection.setAutoCommit(false);
+
+            boolean exito = personaDAO.editar(connection, (Persona)cliente);
+
+            if (!exito) {
+                throw new Exception("No se pudo editar la persona asociada al cliente");
+            }
+
+            exito = clienteDAO.editar(connection, cliente);
+
+            if (!exito) {
+                throw new Exception("No se pudo editar el cliente");
+            }
+
+            connection.commit();
+        } catch (Exception e) {
+            connection.rollback();
+            throw e;
+        }
+
+        return true;
+    }
 }

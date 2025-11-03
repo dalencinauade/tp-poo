@@ -150,7 +150,7 @@ public class RegistroUsuario extends JFrame {
             new Login().setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Error: " + respuesta.mensaje);
+            JOptionPane.showMessageDialog(this, "Error: " + respuesta.mensaje, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

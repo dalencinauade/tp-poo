@@ -66,4 +66,38 @@ public class GerenteService {
 
         return true;
     }
+
+    public boolean editar(Gerente gerente) throws Exception {
+        Connection connection = null;
+
+        try {
+            connection = ConexionSQLite.getConnection();
+            connection.setAutoCommit(false);
+
+            boolean exito = gerenteDAO.editar(connection, gerente);
+
+            if (!exito) {
+                throw new Exception("No se pudo editar el gerente");
+            }
+
+            exito = empleadoDAO.editar(connection, (Empleado)gerente);
+
+            if (!exito) {
+                throw new Exception("No se pudo editar el empleado asociado al gerente");
+            }
+
+            exito = personaDAO.editar(connection, (Persona)gerente);
+
+            if (!exito) {
+                throw new Exception("No se pudo editar la persona asociada al gerente");
+            }
+
+            connection.commit();
+        } catch (Exception e) {
+            connection.rollback();
+            throw e;
+        }
+
+        return true;
+    }
 }

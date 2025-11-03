@@ -1,5 +1,9 @@
 package alquilervehiculos.controller;
 
+import java.util.List;
+
+import alquilervehiculos.model.dto.ListarUsuariosDTO;
+import alquilervehiculos.model.dto.ObtenerUsuarioParaEdicionDTO;
 import alquilervehiculos.model.entities.Respuesta;
 import alquilervehiculos.model.entities.Sesion;
 import alquilervehiculos.service.UsuarioService;
@@ -34,5 +38,21 @@ public class UsuarioController {
 
     public boolean existeSesionActiva() {
         return usuarioService.existeSesionActiva();
+    }
+
+    public List<ListarUsuariosDTO> listarUsuarios() {
+        try {
+            return usuarioService.listarUsuarios();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public ObtenerUsuarioParaEdicionDTO obtenerParaEdicion(int idUsuario) {
+        try {
+            return usuarioService.obtenerParaEdicion(idUsuario);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

@@ -45,7 +45,7 @@ public class Administrativo extends Empleado {
         return idiomas;
     }
 
-    public void setCantidadIdiomas(String idiomas) {
+    public void setIdiomas(String idiomas) {
         this.idiomas = idiomas;
     }
 }

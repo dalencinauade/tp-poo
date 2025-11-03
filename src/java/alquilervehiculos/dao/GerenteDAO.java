@@ -22,4 +22,19 @@ public class GerenteDAO {
             return filas > 0;
         }
     }
+
+    public boolean editar(Connection connection, Gerente gerente) throws SQLException {
+        String query = "UPDATE gerentes SET bonoRendimiento = ?, fechaInicioComoGerente = ?, metaVentasMensual = ? WHERE idGerente = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setDouble(1, gerente.getBonoRendimiento());
+            statement.setString(2, gerente.getFechaInicioComoGerenteString());
+            statement.setDouble(3, gerente.getMetaVentasMensual());
+            statement.setInt(4, gerente.getIdGerente());
+
+            int filas = statement.executeUpdate();
+
+            return filas > 0;
+        }
+    }
 }

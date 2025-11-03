@@ -66,4 +66,38 @@ public class AdministrativoService {
 
         return true;
     }
+
+    public boolean editar(Administrativo administrativo) throws Exception {
+        Connection connection = null;
+
+        try {
+            connection = ConexionSQLite.getConnection();
+            connection.setAutoCommit(false);
+
+            boolean exito = personaDAO.editar(connection, (Persona)administrativo);
+
+            if (!exito) {
+                throw new Exception("No se pudo editar la persona asociada al administrativo");
+            }
+
+            exito = empleadoDAO.editar(connection, (Empleado)administrativo);
+
+            if (!exito) {
+                throw new Exception("No se pudo editar el empleado asociado al administrativo");
+            }
+
+            exito = administrativoDAO.editar(connection, administrativo);
+
+            if (!exito) {
+                throw new Exception("No se pudo editar el administrativo");
+            }
+
+            connection.commit();
+        } catch (Exception e) {
+            connection.rollback();
+            throw e;
+        }
+
+        return true;
+    }
 }

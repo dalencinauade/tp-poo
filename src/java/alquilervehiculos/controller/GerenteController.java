@@ -22,10 +22,29 @@ public class GerenteController {
         String mensaje = "";
 
         try {
-            Usuario usuario = new Usuario(username, password, RolUsuarioEnum.CLIENTE);
+            Usuario usuario = new Usuario(username, password, RolUsuarioEnum.GERENTE);
             Gerente gerente = new Gerente(Double.parseDouble(bonoRendimiento), fechaInicioComoGerente, Double.parseDouble(metaVentasMensual), legajo, Double.parseDouble(salario), nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
 
             exito = gerenteService.registrar(usuario, gerente);
+        } catch (Exception e) {
+            mensaje = e.getMessage();
+        }
+
+        return new Respuesta(exito, mensaje);
+    }
+
+    public Respuesta editar(int idUsuario, String nombre, String apellido, String email, String dni, String telefono, String direccion,
+    Date fechaNacimiento, String legajo, Double salario, Double bonoRendimiento, Date fechaInicioComoGerente, Double metaVentasMensual) {
+        boolean exito = false;
+        String mensaje = "";
+
+        try {
+            Gerente gerente = new Gerente(bonoRendimiento, fechaInicioComoGerente, metaVentasMensual, legajo, salario, nombre, apellido, email, dni, telefono, direccion, fechaNacimiento);
+            gerente.setIdGerente(idUsuario);
+            gerente.setIdEmpleado(idUsuario);
+            gerente.setIdPersona(idUsuario);
+
+            exito = gerenteService.editar(gerente);
         } catch (Exception e) {
             mensaje = e.getMessage();
         }

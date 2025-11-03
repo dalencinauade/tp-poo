@@ -1,6 +1,12 @@
 package alquilervehiculos.service;
 
+import java.sql.Connection;
+import java.util.List;
+
+import alquilervehiculos.dao.ConexionSQLite;
 import alquilervehiculos.dao.UsuarioDAO;
+import alquilervehiculos.model.dto.ListarUsuariosDTO;
+import alquilervehiculos.model.dto.ObtenerUsuarioParaEdicionDTO;
 import alquilervehiculos.model.entities.Sesion;
 
 public class UsuarioService {
@@ -32,5 +38,13 @@ public class UsuarioService {
 
     public Sesion getSesionActual() {
         return this.sesionActual;
+    }
+
+    public List<ListarUsuariosDTO> listarUsuarios() throws Exception {
+        return usuarioDAO.listarUsuarios();
+    }
+
+    public ObtenerUsuarioParaEdicionDTO obtenerParaEdicion(int idUsuario) throws Exception {
+        return usuarioDAO.obtenerParaEdicion(idUsuario);
     }
 }
