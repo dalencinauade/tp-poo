@@ -87,14 +87,6 @@ public class Reserva {
     // Métodos de negocio
 
     /**
-     * Confirma la reserva y cambia el estado del vehículo a RESERVADO
-     */
-    public void confirmar() {
-        this.estado = EstadoReservaEnum.CONFIRMADA;
-        // El vehículo seguirá DISPONIBLE hasta que se convierta en alquiler
-    }
-
-    /**
      * Cancela la reserva y libera el vehículo
      */
     public void cancelar() {
@@ -110,7 +102,7 @@ public class Reserva {
      * @return true si se puede convertir, false si no
      */
     public boolean convertirAAlquiler() {
-        if (this.estado == EstadoReservaEnum.CONFIRMADA) {
+        if (this.estado == EstadoReservaEnum.PENDIENTE) {
             this.estado = EstadoReservaEnum.CONVERTIDA_ALQUILER;
             return true;
         }
@@ -121,7 +113,6 @@ public class Reserva {
      * Verifica si la reserva está activa (confirmada o pendiente)
      */
     public boolean estaActiva() {
-        return this.estado == EstadoReservaEnum.CONFIRMADA ||
-                this.estado == EstadoReservaEnum.PENDIENTE;
+        return this.estado == EstadoReservaEnum.PENDIENTE;
     }
 }

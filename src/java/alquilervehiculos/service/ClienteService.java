@@ -6,6 +6,7 @@ import alquilervehiculos.dao.ClienteDAO;
 import alquilervehiculos.dao.ConexionSQLite;
 import alquilervehiculos.dao.PersonaDAO;
 import alquilervehiculos.dao.UsuarioDAO;
+import alquilervehiculos.model.dto.ClienteObtenerDatosInterfazDTO;
 import alquilervehiculos.model.entities.Cliente;
 import alquilervehiculos.model.entities.Persona;
 import alquilervehiculos.model.entities.Usuario;
@@ -81,5 +82,9 @@ public class ClienteService {
         }
 
         return true;
+    }
+
+    public ClienteObtenerDatosInterfazDTO obtenerDatosInterfaz(int idUsuario) throws Exception {
+        return clienteDAO.obtenerDatosInterfaz(idUsuario);
     }
 }

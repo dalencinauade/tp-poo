@@ -2,9 +2,13 @@ package alquilervehiculos.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import alquilervehiculos.model.dto.ClienteObtenerDatosInterfazDTO;
 import alquilervehiculos.model.entities.Cliente;
+import alquilervehiculos.model.enums.EstadoAlquilerEnum;
+import alquilervehiculos.model.enums.EstadoReservaEnum;
 
 public class ClienteDAO {
     
@@ -34,5 +38,38 @@ public class ClienteDAO {
             
             return filas > 0;
         }
+    }
+
+    public ClienteObtenerDatosInterfazDTO obtenerDatosInterfaz(int idUsuario) throws SQLException {
+        ClienteObtenerDatosInterfazDTO dto = new ClienteObtenerDatosInterfazDTO();
+        Connection connection = ConexionSQLite.getConnection();
+
+        String query = "SELECT estadoId FROM reservas WHERE idCliente = ? AND idEstado = ? LIMIT 1";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idUsuario);
+            statement.setInt(2, EstadoReservaEnum.PENDIENTE.getId());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                dto.setEstadoReserva(EstadoReservaEnum.fromId(resultSet.getInt("idEstado")));
+            }
+        }
+
+        query = "SELECT estadoId FROM alquileres WHERE idCliente = ? AND idEstado = ? LIMIT 1";
+
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idUsuario);
+            statement.setInt(2, EstadoAlquilerEnum.VIGENTE.getId());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                dto.setEstadoAlquiler(EstadoAlquilerEnum.fromId(resultSet.getInt("idEstado")));
+            }
+        }
+
+        return dto;
     }
 }

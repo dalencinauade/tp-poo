@@ -2,9 +2,8 @@ package alquilervehiculos.model.enums;
 
 public enum EstadoReservaEnum {
     PENDIENTE(1),
-    CONFIRMADA(2),
-    CANCELADA(3),
-    CONVERTIDA_ALQUILER(4);
+    CANCELADA(2),
+    CONVERTIDA_ALQUILER(3);
 
     private final int id;
 

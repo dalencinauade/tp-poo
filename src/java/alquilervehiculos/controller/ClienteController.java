@@ -2,6 +2,7 @@ package alquilervehiculos.controller;
 
 import java.util.Date;
 
+import alquilervehiculos.model.dto.ClienteObtenerDatosInterfazDTO;
 import alquilervehiculos.model.entities.Cliente;
 import alquilervehiculos.model.entities.Respuesta;
 import alquilervehiculos.model.entities.Usuario;
@@ -48,5 +49,14 @@ public class ClienteController {
         }
 
         return new Respuesta(exito, mensaje);
+    }
+
+    public ClienteObtenerDatosInterfazDTO obtenerDatosInterfaz(int idUsuario) {
+        try {
+            return clienteService.obtenerDatosInterfaz(idUsuario);
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 }

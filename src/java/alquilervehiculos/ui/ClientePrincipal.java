@@ -3,14 +3,20 @@ package alquilervehiculos.ui;
 import javax.swing.*;
 
 import alquilervehiculos.config.AppContext;
+import alquilervehiculos.controller.ClienteController;
 import alquilervehiculos.controller.UsuarioController;
+import alquilervehiculos.model.dto.ClienteObtenerDatosInterfazDTO;
+import alquilervehiculos.model.enums.EstadoAlquilerEnum;
+import alquilervehiculos.model.enums.EstadoReservaEnum;
 
 public class ClientePrincipal extends JFrame {
     private final UsuarioController usuarioController;
+    private final ClienteController clienteController;
 
     public ClientePrincipal() {
         super("Panel principal");
         this.usuarioController = AppContext.getUsuarioController();
+        this.clienteController = AppContext.getClienteController();
         init();
     }
 
@@ -30,15 +36,12 @@ public class ClientePrincipal extends JFrame {
         btnReservar.addActionListener(e -> reservar());
         add(btnReservar);
 
-        JButton btnCancelarReserva = new JButton("Cancelar reserva vigente");
-        btnCancelarReserva.setBounds(20, 80, 200, 25);
-        btnCancelarReserva.addActionListener(e -> cancelarReserva());
-        add(btnCancelarReserva);
-
         JButton btnLogout = new JButton("Cerrar sesión");
         btnLogout.setBounds(20, 110, 200, 25);
         btnLogout.addActionListener(e -> logout());
         add(btnLogout);
+
+        obtenerDatosInterfaz();
     }
 
     private void logout() {
@@ -48,13 +51,19 @@ public class ClientePrincipal extends JFrame {
         this.dispose();
     }
 
+    private void obtenerDatosInterfaz() {
+        ClienteObtenerDatosInterfazDTO dto = clienteController.obtenerDatosInterfaz(usuarioController.getSesionActual().getId());
+
+        if (dto.getEstadoReserva() != EstadoReservaEnum.PENDIENTE && dto.getEstadoAlquiler() != EstadoAlquilerEnum.VIGENTE) {
+            // Mostrar que puede reservar
+        }
+
+        
+    }
+
     private void reservar() {
         // Antes de abrir el formulario hay que chequear si el cliente tiene un alquiler en vigencia
         // Si tiene un alquiler en vigencia, hay que informar y no dejar avanzar hacia la reserva
         //new ClienteReservarVehiculo(this, true).setVisible(true);
-    }
-
-    private void cancelarReserva() {
-        //new ClienteCancelarReserva(this, true).setVisible(true);
     }
 }
