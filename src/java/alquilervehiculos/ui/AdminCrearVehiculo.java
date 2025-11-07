@@ -3,8 +3,13 @@ package alquilervehiculos.ui;
 import alquilervehiculos.config.AppContext;
 import alquilervehiculos.controller.VehiculoController;
 import alquilervehiculos.model.entities.Respuesta;
+import alquilervehiculos.ui.utils.Validacion.ResultadoValidacion;
+import alquilervehiculos.ui.utils.Validacion.TipoInput;
 
 import javax.swing.*;
+
+import static alquilervehiculos.ui.utils.Validacion.*;
+
 import java.awt.*;
 
 public class AdminCrearVehiculo extends JDialog {
@@ -39,7 +44,7 @@ public class AdminCrearVehiculo extends JDialog {
         // Categoría
         JLabel lblCategoria = new JLabel("Categoría:");
         lblCategoria.setBounds(labelX, y, 150, height);
-        cmbCategoria = new JComboBox<>(new String[]{"Compacto", "Sedán", "SUV", "Pickup", "Lujo", "Deportivo"});
+        cmbCategoria = new JComboBox<>(new String[] { "Compacto", "Sedán", "SUV", "Pickup", "Lujo", "Deportivo" });
         cmbCategoria.setBounds(fieldX, y, 200, height);
         add(lblCategoria);
         add(cmbCategoria);
@@ -111,7 +116,7 @@ public class AdminCrearVehiculo extends JDialog {
         // Estado
         JLabel lblEstado = new JLabel("Estado:");
         lblEstado.setBounds(labelX, y += spacing, 150, height);
-        cmbEstado = new JComboBox<>(new String[]{"Disponible", "En mantenimiento", "Fuera de servicio"});
+        cmbEstado = new JComboBox<>(new String[] { "Disponible", "En mantenimiento", "Fuera de servicio" });
         cmbEstado.setBounds(fieldX, y, 200, height);
         add(lblEstado);
         add(cmbEstado);
@@ -135,10 +140,50 @@ public class AdminCrearVehiculo extends JDialog {
     }
 
     private void crear() {
-        Respuesta respuesta = vehiculoController.crear((String) cmbCategoria.getSelectedItem(), txtPatente.getText(), txtMarca.getText(),
-        txtModelo.getText(), Integer.parseInt(txtAnio.getText()), Double.parseDouble(txtPrecioDiario.getText()),
-        Double.parseDouble(txtCapacidadTanque.getText()), Double.parseDouble(txtCapacidadTanqueMaxima.getText()),
-        Integer.parseInt(txtKilometraje.getText()), (String) cmbEstado.getSelectedItem());
+
+        // Validación de inputs
+        ResultadoValidacion resultado = validarTodos(
+                validar(txtPatente, TipoInput.TEXTO, "Patente"),
+                validar(txtMarca, TipoInput.TEXTO, "Marca"),
+                validar(txtModelo, TipoInput.TEXTO, "Modelo"),
+                validar(txtAnio, TipoInput.NUMERO_ENTERO_POSITIVO, "Año"),
+                validar(txtPrecioDiario, TipoInput.NUMERO_DECIMAL_POSITIVO, "Precio diario"),
+                validar(txtCapacidadTanque, TipoInput.NUMERO_DECIMAL_POSITIVO, "Capacidad tanque"),
+                validar(txtCapacidadTanqueMaxima, TipoInput.NUMERO_DECIMAL_POSITIVO, "Capacidad tanque máxima"),
+                validar(txtKilometraje, TipoInput.NUMERO_ENTERO_POSITIVO, "Kilometraje"));
+
+        if (!resultado.valido) {
+            JOptionPane.showMessageDialog(this, resultado.mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Validar que el año sea >= 1900 y <= el año actual + 1
+        try {
+            int anio = Integer.parseInt(txtAnio.getText().trim());
+            int anioActual = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
+            if (anio < 1900 || anio > anioActual + 1) {
+                JOptionPane.showMessageDialog(this,
+                        "El año debe estar entre 1900 y " + (anioActual + 1),
+                        "Error de validación",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error al validar el año",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Si todas las validaciones pasan, continuar con la creación
+        Respuesta respuesta = vehiculoController.crear((String) cmbCategoria.getSelectedItem(),
+                txtPatente.getText().trim(),
+                txtMarca.getText().trim(), txtModelo.getText().trim(),
+                Integer.parseInt(txtAnio.getText().trim()),
+                Double.parseDouble(txtPrecioDiario.getText().trim()),
+                Double.parseDouble(txtCapacidadTanque.getText().trim()),
+                Double.parseDouble(txtCapacidadTanqueMaxima.getText().trim()),
+                Integer.parseInt(txtKilometraje.getText().trim()),
+                (String) cmbEstado.getSelectedItem());
 
         if (respuesta.exito) {
             JOptionPane.showMessageDialog(this, "Vehículo guardado correctamente");
