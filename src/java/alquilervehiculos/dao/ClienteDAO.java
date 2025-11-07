@@ -44,7 +44,7 @@ public class ClienteDAO {
         ClienteObtenerDatosInterfazDTO dto = new ClienteObtenerDatosInterfazDTO();
         Connection connection = ConexionSQLite.getConnection();
 
-        String query = "SELECT estadoId FROM reservas WHERE idCliente = ? AND idEstado = ? LIMIT 1";
+        String query = "SELECT idEstado FROM reservas WHERE idCliente = ? AND idEstado = ? LIMIT 1";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, idUsuario);
@@ -57,7 +57,7 @@ public class ClienteDAO {
             }
         }
 
-        query = "SELECT estadoId FROM alquileres WHERE idCliente = ? AND idEstado = ? LIMIT 1";
+        query = "SELECT idEstado FROM alquileres WHERE idCliente = ? AND idEstado = ? LIMIT 1";
 
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, idUsuario);

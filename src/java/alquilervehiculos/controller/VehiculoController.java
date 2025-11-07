@@ -1,8 +1,10 @@
 package alquilervehiculos.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import alquilervehiculos.model.dto.ListarVehiculosDTO;
+import alquilervehiculos.model.dto.ListarVehiculosDisponiblesDTO;
 import alquilervehiculos.model.dto.ObtenerVehiculoParaEdicionDTO;
 import alquilervehiculos.model.entities.Respuesta;
 import alquilervehiculos.model.entities.Vehiculo;
@@ -64,5 +66,13 @@ public class VehiculoController {
         }
 
         return new Respuesta(exito, mensaje);
+    }
+
+    public List<ListarVehiculosDisponiblesDTO> listarDisponibles(Date desde, Date hasta) {
+        try {
+            return vehiculoService.listarDisponibles(desde, hasta);
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

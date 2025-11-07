@@ -13,14 +13,14 @@ public class Reserva {
     private Cliente cliente; // Relación N:1 con Cliente
     private Vehiculo vehiculo; // Relación N:1 con Vehiculo
 
-    public Reserva(Date fechaInicio, Date fechaFin, EstadoReservaEnum estado, Cliente cliente, Vehiculo vehiculo) {
+    public Reserva(Date fechaInicio, Date fechaFin, Double costoEstimado) {
         this.fechaReserva = new Date();
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.estado = EstadoReservaEnum.PENDIENTE;
-        //this.costoEstimado calcular: diferencia de fechas * vehiculo.costo
-        this.cliente = cliente;
-        this.vehiculo = vehiculo;
+        this.costoEstimado = costoEstimado;
+        //this.cliente = cliente;
+        //this.vehiculo = vehiculo;
     }
 
     // Getters y Setters

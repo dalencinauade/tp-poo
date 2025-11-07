@@ -1,11 +1,13 @@
 package alquilervehiculos.service;
 
 import java.sql.Connection;
+import java.util.Date;
 import java.util.List;
 
 import alquilervehiculos.dao.ConexionSQLite;
 import alquilervehiculos.dao.VehiculoDAO;
 import alquilervehiculos.model.dto.ListarVehiculosDTO;
+import alquilervehiculos.model.dto.ListarVehiculosDisponiblesDTO;
 import alquilervehiculos.model.dto.ObtenerVehiculoParaEdicionDTO;
 import alquilervehiculos.model.entities.Vehiculo;
 
@@ -66,5 +68,9 @@ public class VehiculoService {
         }
 
         return true;
+    }
+
+    public List<ListarVehiculosDisponiblesDTO> listarDisponibles(Date desde, Date hasta) throws Exception {
+        return vehiculoDAO.listarDisponibles(desde, hasta);
     }
 }

@@ -13,6 +13,8 @@ public class ClientePrincipal extends JFrame {
     private final UsuarioController usuarioController;
     private final ClienteController clienteController;
 
+    private JButton btnReservar;
+
     public ClientePrincipal() {
         super("Panel principal");
         this.usuarioController = AppContext.getUsuarioController();
@@ -31,7 +33,7 @@ public class ClientePrincipal extends JFrame {
         labelBienvenida.setBounds(30, 20, 300, 30);
         add(labelBienvenida);
 
-        JButton btnReservar = new JButton("Reservar vehículo");
+        btnReservar = new JButton("Reservar vehículo");
         btnReservar.setBounds(20, 50, 200, 25);
         btnReservar.addActionListener(e -> reservar());
         add(btnReservar);
@@ -55,15 +57,13 @@ public class ClientePrincipal extends JFrame {
         ClienteObtenerDatosInterfazDTO dto = clienteController.obtenerDatosInterfaz(usuarioController.getSesionActual().getId());
 
         if (dto.getEstadoReserva() != EstadoReservaEnum.PENDIENTE && dto.getEstadoAlquiler() != EstadoAlquilerEnum.VIGENTE) {
-            // Mostrar que puede reservar
+            btnReservar.setVisible(true);
         }
 
         
     }
 
     private void reservar() {
-        // Antes de abrir el formulario hay que chequear si el cliente tiene un alquiler en vigencia
-        // Si tiene un alquiler en vigencia, hay que informar y no dejar avanzar hacia la reserva
-        //new ClienteReservarVehiculo(this, true).setVisible(true);
+        new ClienteReservarVehiculo(this, true).setVisible(true);
     }
 }

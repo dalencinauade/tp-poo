@@ -1,13 +1,16 @@
 package alquilervehiculos.dao;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import alquilervehiculos.model.dto.ListarVehiculosDTO;
+import alquilervehiculos.model.dto.ListarVehiculosDisponiblesDTO;
 import alquilervehiculos.model.dto.ObtenerVehiculoParaEdicionDTO;
 import alquilervehiculos.model.entities.Vehiculo;
 import alquilervehiculos.model.enums.CategoriaVehiculoEnum;
+import alquilervehiculos.model.enums.EstadoReservaEnum;
 import alquilervehiculos.model.enums.EstadoVehiculoEnum;
 
 public class VehiculoDAO {
@@ -125,5 +128,49 @@ public class VehiculoDAO {
             
             return filas > 0;
         }
+    }
+
+    public List<ListarVehiculosDisponiblesDTO> listarDisponibles(java.util.Date desde, java.util.Date hasta) throws SQLException {
+        List<ListarVehiculosDisponiblesDTO> lista = new ArrayList<>();
+        Connection connection = ConexionSQLite.getConnection();
+
+        String query = """
+            SELECT v.idVehiculo, v.marca, v.modelo, v.anio, v.precioDiario, v.idCategoria
+            FROM vehiculos v
+            WHERE v.idVehiculo NOT IN (
+                SELECT r.idVehiculo
+                FROM reservas r
+                WHERE r.idEstado IN (?, ?)
+                AND NOT (r.fechaFin < ? OR r.fechaInicio > ?)
+            )
+        """;
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, EstadoReservaEnum.PENDIENTE.getId());
+            stmt.setInt(2, EstadoReservaEnum.CONVERTIDA_ALQUILER.getId());
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            stmt.setString(3, sdf.format(desde)); // fechaDesdeConsulta
+            stmt.setString(4, sdf.format(hasta)); // fechaHastaConsulta
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    CategoriaVehiculoEnum categoria = CategoriaVehiculoEnum.fromId(rs.getInt("idCategoria"));
+
+                    ListarVehiculosDisponiblesDTO dto = new ListarVehiculosDisponiblesDTO(
+                        rs.getInt("idVehiculo"),
+                        rs.getString("marca"),
+                        rs.getString("modelo"),
+                        rs.getInt("anio"),
+                        rs.getDouble("precioDiario"),
+                        CategoriaVehiculoEnum.toString(categoria)
+                    );
+
+                    lista.add(dto);
+                }
+            }
+        }
+
+        return lista;
     }
 }
