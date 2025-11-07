@@ -8,6 +8,10 @@ import alquilervehiculos.controller.ClienteController;
 import alquilervehiculos.controller.GerenteController;
 import alquilervehiculos.controller.TecnicoController;
 import alquilervehiculos.model.entities.Respuesta;
+import alquilervehiculos.ui.utils.Validacion.ResultadoValidacion;
+import alquilervehiculos.ui.utils.Validacion.TipoInput;
+
+import static alquilervehiculos.ui.utils.Validacion.*;
 
 import java.awt.*;
 import java.util.Calendar;
@@ -197,12 +201,7 @@ public class AdminCrearUsuario extends JDialog {
         add(spinnerVencimientoLicencia);
 
         btnRegistrar = new JButton("Registrar");
-        btnRegistrar.addActionListener(e -> registrar(txtNombre.getText(), txtApellido.getText(), txtEmail.getText(),
-        txtDni.getText(), txtTelefono.getText(), txtDireccion.getText(), (Date)spinnerNacimiento.getValue(),
-        txtUsername.getText(), new String(txtPassword.getPassword()), txtLegajo.getText(), txtSalario.getText(),
-        (String) cmbRol.getSelectedItem(), txtMetaAlquileresMensual.getText(), txtIdiomas.getText(),
-        txtBonoRendimiento.getText(), (Date)spinnerInicioComoGerente.getValue(), txtMetaVentasMensual.getText(),
-        txtNumeroLicencia.getText(), (Date)spinnerVencimientoLicencia.getValue()));
+        btnRegistrar.addActionListener(e -> registrar());
         add(btnRegistrar);
         
         btnCancelar = new JButton("Cancelar");
@@ -280,10 +279,85 @@ public class AdminCrearUsuario extends JDialog {
         this.dispose();
     }
 
-    private void registrar(String nombre, String apellido, String email, String dni, String telefono, String direccion,
-    Date fechaNacimiento,  String username, String password, String legajo, String salario, String rol,
-    String metaAlquileresMensual, String idiomas, String bonoRendimiento, Date fechaInicioComoGerente,
-    String metaVentas, String numeroLicencia, Date fechaVencimientoLicencia) {
+    private void registrar() {
+        String rol = (String) cmbRol.getSelectedItem();
+        
+        // Validar campos comunes
+        ResultadoValidacion resultado = validarTodos(
+                validar(txtNombre, TipoInput.TEXTO, "Nombre"),
+                validar(txtApellido, TipoInput.TEXTO, "Apellido"),
+                validar(txtEmail, TipoInput.EMAIL, "Email"),
+                validar(txtDni, TipoInput.NUMERO_ENTERO_POSITIVO, "DNI"),
+                validar(txtTelefono, TipoInput.NUMERO_ENTERO_POSITIVO, "Teléfono"),
+                validar(txtDireccion, TipoInput.TEXTO, "Dirección"),
+                validar(spinnerNacimiento, "Fecha de nacimiento"),
+                validar(txtUsername, TipoInput.TEXTO, "Usuario"),
+                validar(txtPassword, "Contraseña")
+        );
+
+        // Validar campos específicos según el rol
+        if (resultado.valido) {
+            switch (rol) {
+                case "Cliente" -> {
+                    resultado = validarTodos(
+                            resultado,
+                            validar(txtNumeroLicencia, TipoInput.TEXTO, "Número de licencia"),
+                            validar(spinnerVencimientoLicencia, "Vencimiento de licencia")
+                    );
+                }
+                case "Administrativo" -> {
+                    resultado = validarTodos(
+                            resultado,
+                            validar(txtLegajo, TipoInput.NUMERO_ENTERO_POSITIVO, "Legajo"),
+                            validar(txtSalario, TipoInput.NUMERO_DECIMAL_POSITIVO, "Salario"),
+                            validar(txtMetaAlquileresMensual, TipoInput.NUMERO_ENTERO_POSITIVO, "Meta de alquileres mensual"),
+                            validar(txtIdiomas, TipoInput.TEXTO, "Idiomas")
+                    );
+                }
+                case "Técnico" -> {
+                    resultado = validarTodos(
+                            resultado,
+                            validar(txtLegajo, TipoInput.NUMERO_ENTERO_POSITIVO, "Legajo"),
+                            validar(txtSalario, TipoInput.NUMERO_DECIMAL_POSITIVO, "Salario")
+                    );
+                }
+                case "Gerente" -> {
+                    resultado = validarTodos(
+                            resultado,
+                            validar(txtLegajo, TipoInput.NUMERO_ENTERO_POSITIVO, "Legajo"),
+                            validar(txtSalario, TipoInput.NUMERO_DECIMAL_POSITIVO, "Salario"),
+                            validar(txtBonoRendimiento, TipoInput.NUMERO_DECIMAL_POSITIVO, "Bono por rendimiento"),
+                            validar(spinnerInicioComoGerente, "Fecha inicio como gerente"),
+                            validar(txtMetaVentasMensual, TipoInput.NUMERO_ENTERO_POSITIVO, "Meta de ventas mensual")
+                    );
+                }
+            }
+        }
+
+        if (!resultado.valido) {
+            JOptionPane.showMessageDialog(this, resultado.mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Si todas las validaciones pasan, continuar con el registro
+        String nombre = txtNombre.getText().trim();
+        String apellido = txtApellido.getText().trim();
+        String email = txtEmail.getText().trim();
+        String dni = txtDni.getText().trim();
+        String telefono = txtTelefono.getText().trim();
+        String direccion = txtDireccion.getText().trim();
+        Date fechaNacimiento = (Date) spinnerNacimiento.getValue();
+        String username = txtUsername.getText().trim();
+        String password = new String(txtPassword.getPassword());
+        String legajo = txtLegajo.getText().trim();
+        String salario = txtSalario.getText().trim();
+        String metaAlquileresMensual = txtMetaAlquileresMensual.getText().trim();
+        String idiomas = txtIdiomas.getText().trim();
+        String bonoRendimiento = txtBonoRendimiento.getText().trim();
+        Date fechaInicioComoGerente = (Date) spinnerInicioComoGerente.getValue();
+        String metaVentas = txtMetaVentasMensual.getText().trim();
+        String numeroLicencia = txtNumeroLicencia.getText().trim();
+        Date fechaVencimientoLicencia = (Date) spinnerVencimientoLicencia.getValue();
 
         Respuesta respuesta = new Respuesta(false, "");
 

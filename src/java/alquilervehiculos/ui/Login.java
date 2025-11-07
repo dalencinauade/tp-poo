@@ -6,6 +6,10 @@ import alquilervehiculos.config.AppContext;
 import alquilervehiculos.controller.UsuarioController;
 import alquilervehiculos.model.entities.Respuesta;
 import alquilervehiculos.model.entities.Sesion;
+import alquilervehiculos.ui.utils.Validacion.ResultadoValidacion;
+import alquilervehiculos.ui.utils.Validacion.TipoInput;
+
+import static alquilervehiculos.ui.utils.Validacion.*;
 
 public class Login extends JFrame {
     private final UsuarioController usuarioController;
@@ -45,7 +49,7 @@ public class Login extends JFrame {
 
         JButton btnLogin = new JButton("Iniciar sesión");
         btnLogin.setBounds(200, 160, 150, 25);
-        btnLogin.addActionListener(e -> login(txtUsername.getText(), new String(txtPassword.getPassword())));
+        btnLogin.addActionListener(e -> login(txtUsername, txtPassword));
         add(btnLogin);
 
         JButton btnRegistro = new JButton("Registrarse");
@@ -56,7 +60,22 @@ public class Login extends JFrame {
         getRootPane().setDefaultButton(btnLogin);
     }
 
-    private void login(String username, String password) {
+    private void login(JTextField txtUsername, JPasswordField txtPassword) {
+        // Validar campos
+        ResultadoValidacion resultado = validarTodos(
+                validar(txtUsername, TipoInput.TEXTO, "Usuario"),
+                validar(txtPassword, "Contraseña")
+        );
+
+        if (!resultado.valido) {
+            JOptionPane.showMessageDialog(this, resultado.mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Si todas las validaciones pasan, continuar con el login
+        String username = txtUsername.getText().trim();
+        String password = new String(txtPassword.getPassword());
+        
         Respuesta respuesta = usuarioController.login(username, password);
 
         if (respuesta.exito) {

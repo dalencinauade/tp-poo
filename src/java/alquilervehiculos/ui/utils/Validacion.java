@@ -84,10 +84,6 @@ public class Validacion {
             return ResultadoValidacion.error(nombre + " no puede estar vacía");
         }
 
-        if (valor.length() < 6) {
-            return ResultadoValidacion.error(nombre + " debe tener al menos 6 caracteres");
-        }
-
         return ResultadoValidacion.exitoso();
     }
 

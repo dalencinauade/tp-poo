@@ -7,6 +7,10 @@ import javax.swing.*;
 import alquilervehiculos.config.AppContext;
 import alquilervehiculos.controller.ClienteController;
 import alquilervehiculos.model.entities.Respuesta;
+import alquilervehiculos.ui.utils.Validacion.ResultadoValidacion;
+import alquilervehiculos.ui.utils.Validacion.TipoInput;
+
+import static alquilervehiculos.ui.utils.Validacion.*;
 
 public class RegistroUsuario extends JFrame {
     private final ClienteController clienteController;
@@ -122,10 +126,8 @@ public class RegistroUsuario extends JFrame {
 
         JButton btnRegistro = new JButton("Registrarse");
         btnRegistro.setBounds(100, y += spacing + 20, 130, 30);
-        btnRegistro.addActionListener(e -> registrar(txtNombre.getText(), txtApellido.getText(), txtEmail.getText(),
-        txtDni.getText(), txtTelefono.getText(), txtDireccion.getText(), (Date)spinnerNacimiento.getValue(),
-        txtNumeroLicencia.getText(), (Date)spinnerVencimientoLicencia.getValue(), txtUsername.getText(),
-        new String(txtPassword.getPassword())));
+        btnRegistro.addActionListener(e -> registrar(txtNombre, txtApellido, txtEmail, txtDni, txtTelefono, 
+        txtDireccion, spinnerNacimiento, txtNumeroLicencia, spinnerVencimientoLicencia, txtUsername, txtPassword));
         add(btnRegistro);
 
         JButton btnVolver = new JButton("Volver");
@@ -139,11 +141,43 @@ public class RegistroUsuario extends JFrame {
         this.dispose();
     }
 
-    private void registrar(String nombre, String apellido, String email, String dni, String telefono, String direccion,
-    Date fechaNacimiento, String numeroLicencia, Date fechaVencimientoLicencia, String username, String password) {
+    private void registrar(JTextField txtNombre, JTextField txtApellido, JTextField txtEmail, JTextField txtDni, 
+            JTextField txtTelefono, JTextField txtDireccion, JSpinner spinnerNacimiento, JTextField txtNumeroLicencia,
+            JSpinner spinnerVencimientoLicencia, JTextField txtUsername, JPasswordField txtPassword) {
         
-        Respuesta respuesta = clienteController.registrar(nombre, apellido, email, dni, telefono, direccion,
-        fechaNacimiento, numeroLicencia, fechaVencimientoLicencia, username, password);
+        // Validar campos
+        ResultadoValidacion resultado = validarTodos(
+                validar(txtNombre, TipoInput.TEXTO, "Nombre"),
+                validar(txtApellido, TipoInput.TEXTO, "Apellido"),
+                validar(txtEmail, TipoInput.EMAIL, "Email"),
+                validar(txtDni, TipoInput.NUMERO_ENTERO_POSITIVO, "DNI"),
+                validar(txtTelefono, TipoInput.NUMERO_ENTERO_POSITIVO, "Teléfono"),
+                validar(txtDireccion, TipoInput.TEXTO, "Dirección"),
+                validar(spinnerNacimiento, "Fecha de nacimiento"),
+                validar(txtNumeroLicencia, TipoInput.TEXTO, "Número de licencia"),
+                validar(spinnerVencimientoLicencia, "Vencimiento de licencia"),
+                validar(txtUsername, TipoInput.TEXTO, "Usuario"),
+                validar(txtPassword, "Contraseña")
+        );
+
+        if (!resultado.valido) {
+            JOptionPane.showMessageDialog(this, resultado.mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Si todas las validaciones pasan, continuar con el registro
+        Respuesta respuesta = clienteController.registrar(
+                txtNombre.getText().trim(), 
+                txtApellido.getText().trim(), 
+                txtEmail.getText().trim(), 
+                txtDni.getText().trim(), 
+                txtTelefono.getText().trim(), 
+                txtDireccion.getText().trim(),
+                (Date) spinnerNacimiento.getValue(),
+                txtNumeroLicencia.getText().trim(), 
+                (Date) spinnerVencimientoLicencia.getValue(), 
+                txtUsername.getText().trim(),
+                new String(txtPassword.getPassword()));
 
         if (respuesta.exito) {
             JOptionPane.showMessageDialog(this, "Gracias por registrarse. Ahora puede iniciar sesión utilizando sus datos");

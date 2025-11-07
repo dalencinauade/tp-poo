@@ -10,6 +10,10 @@ import alquilervehiculos.controller.TecnicoController;
 import alquilervehiculos.controller.UsuarioController;
 import alquilervehiculos.model.dto.ObtenerUsuarioParaEdicionDTO;
 import alquilervehiculos.model.entities.Respuesta;
+import alquilervehiculos.ui.utils.Validacion.ResultadoValidacion;
+import alquilervehiculos.ui.utils.Validacion.TipoInput;
+
+import static alquilervehiculos.ui.utils.Validacion.*;
 
 import java.awt.*;
 import java.util.Calendar;
@@ -296,6 +300,62 @@ public class AdminEditarUsuario extends JDialog {
     }
 
     private void editar() {
+        // Validar campos comunes
+        ResultadoValidacion resultado = validarTodos(
+                validar(txtNombre, TipoInput.TEXTO, "Nombre"),
+                validar(txtApellido, TipoInput.TEXTO, "Apellido"),
+                validar(txtEmail, TipoInput.EMAIL, "Email"),
+                validar(txtDni, TipoInput.NUMERO_ENTERO_POSITIVO, "DNI"),
+                validar(txtTelefono, TipoInput.NUMERO_ENTERO_POSITIVO, "Teléfono"),
+                validar(txtDireccion, TipoInput.TEXTO, "Dirección"),
+                validar(spinnerNacimiento, "Fecha de nacimiento")
+        );
+
+        // Validar campos específicos según el rol
+        if (resultado.valido) {
+            switch (rol) {
+                case "CLIENTE" -> {
+                    resultado = validarTodos(
+                            resultado,
+                            validar(txtNumeroLicencia, TipoInput.TEXTO, "Número de licencia"),
+                            validar(spinnerVencimientoLicencia, "Vencimiento de licencia")
+                    );
+                }
+                case "ADMINISTRATIVO" -> {
+                    resultado = validarTodos(
+                            resultado,
+                            validar(txtLegajo, TipoInput.NUMERO_ENTERO_POSITIVO, "Legajo"),
+                            validar(txtSalario, TipoInput.NUMERO_DECIMAL_POSITIVO, "Salario"),
+                            validar(txtMetaAlquileresMensual, TipoInput.NUMERO_ENTERO_POSITIVO, "Meta de alquileres mensual"),
+                            validar(txtIdiomas, TipoInput.TEXTO, "Idiomas")
+                    );
+                }
+                case "TECNICO" -> {
+                    resultado = validarTodos(
+                            resultado,
+                            validar(txtLegajo, TipoInput.NUMERO_ENTERO_POSITIVO, "Legajo"),
+                            validar(txtSalario, TipoInput.NUMERO_DECIMAL_POSITIVO, "Salario")
+                    );
+                }
+                case "GERENTE" -> {
+                    resultado = validarTodos(
+                            resultado,
+                            validar(txtLegajo, TipoInput.NUMERO_ENTERO_POSITIVO, "Legajo"),
+                            validar(txtSalario, TipoInput.NUMERO_DECIMAL_POSITIVO, "Salario"),
+                            validar(txtBonoRendimiento, TipoInput.NUMERO_DECIMAL_POSITIVO, "Bono por rendimiento"),
+                            validar(spinnerInicioComoGerente, "Fecha inicio como gerente"),
+                            validar(txtMetaVentasMensual, TipoInput.NUMERO_ENTERO_POSITIVO, "Meta de ventas mensual")
+                    );
+                }
+            }
+        }
+
+        if (!resultado.valido) {
+            JOptionPane.showMessageDialog(this, resultado.mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Si todas las validaciones pasan, continuar con la edición
         Respuesta respuesta = new Respuesta(false, "");
 
         switch (rol) {
